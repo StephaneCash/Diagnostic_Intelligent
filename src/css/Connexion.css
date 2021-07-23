@@ -1,0 +1,56 @@
+.formulaireConnexion {
+    border: 1px solid #c2c4c5e5;
+    width: 27%;
+    padding: 20px;
+    margin: auto;
+    border-radius: 10px;
+    background: rgb(0, 0, 0);
+    margin-top: 15vh;
+    height: 65vh;
+    color: silver;
+}
+
+.iconUser {
+    font-size: 60px;
+    color: white;
+}
+
+.buttonConnexion {
+    padding: 2px;
+    color: white;
+    font-size: 18px;
+    width: 18%;
+    position: absolute;
+    left: 50%;
+    background-color: #02022d;
+    transform: translateX(-50%);
+}
+
+.iconeConn {
+    background: #02022d;
+    height: 100px;
+    padding: 10px;
+    width: 100px;
+    margin: auto;
+    border-radius: 100px;
+}
+
+.formulaireConnexion h2 {
+    text-align: center;
+    margin-top: 34px;
+}
+
+.formulaireConnexion .labelText {
+    margin-left: 0px;
+}
+
+.divB {
+    border: 0px solid black;
+    height: auto;
+    width: 100%;
+}
+
+.buttonConnexion:hover {
+    color: white;
+    text-decoration: none;
+}

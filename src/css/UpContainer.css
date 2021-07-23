@@ -1,0 +1,10 @@
+.upContainer {
+    position: absolute;
+    left: 50%;
+    width: 100%;
+    background-color: silver;
+    transform: translateX(-50%);
+    top: 0px;
+    height: 50px;
+    z-index: -1;
+}

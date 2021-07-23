@@ -1,0 +1,24 @@
+
+
+.modal-dialog{
+    width: 55%;
+    max-width: 100% !important;
+    margin: auto;
+    display: block;
+    margin-top: 40px;
+}
+
+.editD{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-right: 15px;
+}
+
+.buttonNewMaladie{
+    padding: 12;
+    width: 15%;
+}
+
+.buttonNewMaladie:active{
+    transform: scale(1.2);
+}
