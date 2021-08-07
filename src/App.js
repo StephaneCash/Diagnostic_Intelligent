@@ -9,16 +9,16 @@ import React, { Component } from 'react'
 export default class App extends Component {
 
   state = {
-    login: "okende",
+    login: "okenhde",
     password: ""
   }
 
   render() {
     return (
       <div className="app">
-        
+
         {
-          (this.state.login === "okdende") ?
+          (this.state.login === "okende") ?
             (
               <div>
                 <Connexion />
@@ -33,4 +33,3 @@ export default class App extends Component {
     )
   }
 }
-

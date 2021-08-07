@@ -7,7 +7,7 @@ function Menu() {
     return (
         <div className="menu">
             <ul>
-                <li><i id="partT" className="IconHome fa fa-stethoscope"></i> </li>
+                <li><i id="partT" className="IconHome fa fa-stethoscope"></i> HOSPITAL </li>
 
                 <li>
                     <NavLink to="/Maladies">
@@ -18,7 +18,8 @@ function Menu() {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/Diagnostic">Diagnostic</NavLink></li>
+                    <NavLink to="/Diagnostic"><center><i className="IconHome fa fa-medkit"></i></center> Diagnostic </NavLink>
+                </li>
                 <li>
                     <NavLink to="/Doctors">
                         <center>
@@ -28,7 +29,7 @@ function Menu() {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/Hop"><center><i className="IconHome fa fa-hospital"></i></center>Hop</NavLink>
+                    <NavLink to="/Hop"><center><i className="IconHome fa fa-info-circle"></i></center>Help</NavLink>
                 </li>
 
                 <li>
@@ -37,6 +38,14 @@ function Menu() {
                             <i className="IconHome fa fa-user"></i>
                         </center>
                         Users
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/configuration">
+                        <center>
+                            <i className="IconHome fa fa-gear"></i>
+                        </center>
+                        Configuration
                     </NavLink>
                 </li>
             </ul>

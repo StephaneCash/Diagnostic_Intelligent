@@ -1,0 +1,41 @@
+.diagnostic {
+    position: absolute;
+    top: 45px;
+    transform: translateX(-20%);
+    left: 26.6%;
+    width: 91%;
+    border: 1px solid white;
+    background-color: #02022d;
+    margin: auto;
+    display: block;
+    margin-top: 15px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: silver;
+}
+
+.diagnostic .title {
+    padding: 10px;
+    font-size: 17px;
+}
+
+.diagnostic .contentDiagnostic {
+    border: 1px solid white;
+    height: 70vh;
+    background-color: white;
+}
+
+.form{
+    padding: 20px;
+    width: 50%;
+    margin: auto;
+    border: 1px solid silver;
+    margin-top: 20px;
+    border-radius: 3px;
+    height: auto;
+    color: black;
+}
+
+.buttonDiagnostic{
+    margin-top: 10px;
+}

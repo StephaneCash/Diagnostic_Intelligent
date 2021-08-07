@@ -102,9 +102,15 @@ h1 {
 
 table td, table th {
     color: rgb(46, 46, 54);
+    width: 23%;
+    margin: auto;
 }
 
 table tr th {
     color: rgba(0, 0, 0, 0.76);
     background-color: silver;
+}
+
+.buttonC{
+    margin-right: 5px;
 }
