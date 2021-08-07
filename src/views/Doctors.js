@@ -26,6 +26,7 @@ function Doctors() {
                 <h1>
                     Docteurs et Spécialités
                 </h1>
+                <hr/>
                 <table className="table table ">
                     <thead>
                         <tr>

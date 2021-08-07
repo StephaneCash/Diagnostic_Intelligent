@@ -1,0 +1,22 @@
+.users {
+    position: absolute;
+    top: 45px;
+    transform: translateX(-20%);
+    left: 26.6%;
+    width: 91%;
+    margin: auto;
+    display: block; 
+}
+
+.userActifs{
+    border: 1px solid white;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #02022d;
+    color: silver;
+}
+
+.userActifs .userId{
+    background-color: red;
+}
