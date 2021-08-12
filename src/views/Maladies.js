@@ -1,125 +1,118 @@
-import React from 'react'
-import { useState } from 'react'
 import NewMaladie from '../dialog/NewMaladie'
-import $ from '../../node_modules/jquery'
 import EditMaladie from '../dialog/EditMaladie';
 import '../css/Maladies.css';
-import { ConfirmDialog, LoadingDialog, ErrorDialog, SuccessDialog } from '../widget/popsDialogs';
+import axios from 'axios';
+import React, { Component } from 'react'
+import ListMaladies from './ListMaladies';
+import Loader from "../dialog/Loader";
 
-function Maladies() {
+
+class Maladies extends Component {
   // AjoutMaladie
-  const [showAjoutMal, setAjoutMal] = useState(false)
+  /*const [showAjoutMal, setAjoutMal] = useState(false)
   const handleShowMal = () => setAjoutMal(true)
   const handleCloseMal = () => setAjoutMal(false)
 
   // EditMaladie
   const [showEditMaladie, setEditMaladie] = useState(false)
   const handleShowMaladie = () => setEditMaladie(true)
-  const handleCloseMaladie = () => setEditMaladie(false)
+  const handleCloseMaladie = () => setEditMaladie(false)*/
 
-  //LoadingDialog
-  const [showLoaderDialog, setShowLoaderDialog] = useState(false);
-  const handleShowLoaderDialog = () => setShowLoaderDialog(true);
-  const handleCloseLoaderDialog = () => setShowLoaderDialog(false);
+  state = {
+    login: "okenhde",
+    password: "",
+    maladies: [],
+    loader: false,
+    url: "http://localhost:8000/api/maladies"
+  }
 
-  //ErrorDialog
-  const [showErrorDialog, setShowErrorDialog] = useState(false);
-  const handleShowErrorDialog = () => setShowErrorDialog(true);
-  const handleCloseErrorDialog = () => setShowErrorDialog(false);
+  getMaladies = async () => {
+    this.setState({ Loader: true })
+    const maladies = await axios.get(this.state.url);
+    this.setState({ maladies: maladies.data, Loader: false });
+  };
 
-  const [showModifDialog, setShowModifDialog] = useState(false);
-  const handleShowModifDialog = () => setShowModifDialog(true);
-  const handleCloseModifDialog = () => setShowModifDialog(false);
+  componentDidMount() {
+    this.getMaladies();
+  }
 
-  //ConfirmDialog
-  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
-  const handleShowConfirmDialog = () => setShowConfirmDialog(true);
-  const handleCloseConfirmDialog = () => setShowConfirmDialog(false);
+  deleteMaladie = async id => {
+    this.setState({ Loader: true });
+    await axios.delete(`${this.state.url}/${id}`);
 
-  //SuccessDialog
-  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
-  const handleShowSuccessDialog = () => setShowSuccessDialog(true);
-  const handleCloseSuccessDialog = () => setShowSuccessDialog(false);
+    this.getMaladies();
+  }
 
-  const [messageDialog, setMessageDialog] = useState({ loadingMessage: "Chargement...", confirmMessage: "Confirmé", errorMessage: "Erreur" });
+  onDelete = (id) => {
+    console.log('Suppessiosn', id);
+    this.deleteMaladie(id);
+  };
 
-  return (
-    <div>
-      <div className='centerData'>
-        <div className='hr1' />
-        <div className='maladieAndSearch d-flex'>
-          <div className='newMaladie'>
-            <button
-              className='buttonMaladie btn btn-success'
-              onClick={handleShowMal}
-            >
-              <i className='fa fa-plus'></i>
-              Ajout Maladie
-            </button>
+  render() {
+    let maladies = this.state.maladies;
+    console.log("Yoka", maladies)
+    return (
+      <div>
+        <div className='centerData'>
+          <div className='hr1' />
+          <div className='maladieAndSearch d-flex'>
+            <div className='newMaladie'>
+              <button
+                className='buttonMaladie btn btn-success'
+                onClick="{handleShowMal}"
+              >
+                <i className='fa fa-plus'></i>
+                Ajout Maladie
+              </button>
+            </div>
+
+            <div className='searchMaladie input-group'>
+              <input type='search' placeholder='Rechercher' className='form-control' />
+              <button type='button' className='buttonMal btn btn-primary'>
+                <i className='fa fa-search' />
+              </button>
+            </div>
           </div>
-
-          <div className='searchMaladie input-group'>
-            <input type='search' placeholder='Rechercher' className='form-control' />
-            <button type='button' className='buttonMal btn btn-primary'>
-              <i className='fa fa-search' />
-            </button>
-          </div>
+          <hr />
+          <h1>Maladies et leurs symptômes</h1>
+          {
+            this.state.Loader ? <Loader /> : ""
+          }
+          <table className='table table'>
+            <thead>
+              <tr>
+                <th scope='col'>N°</th>
+                <th scope='col'>Nom</th>
+                <th scope='col'>Type</th>
+                <th scope='col'>Symptômes</th>
+                <th scope='col' className="idTable3">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {maladies.map(maladie => {
+                return <ListMaladies maladies={maladie} key={maladie.id} onDelete={this.onDelete} />
+              })
+              }
+            </tbody>
+          </table>
         </div>
-        <hr/>
-        <h1>Maladies et leurs symptômes</h1>
-        <table className='table table'>
-          <thead>
-            <tr>
-              <th scope='col' className="idTable">N°</th>
-              <th scope='col'>Noms</th>
-              <th scope='col'>Symptômes</th>
-              <th scope='col' style={{ width: '16%' }}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td scope='row'>1</td>
-              <td>Coronas Virus COVID-19</td>
-              <td>Toux, Mal à la gorge</td>
-              <td>
-                <button type='submit' className='btn btn-primary' onClick={handleShowMaladie}><i className="fa fa-edit"></i> Modifier</button>
-                <button className='buttonS btn btn-danger' type='submit'><i className="fa fa-trash"></i> Supprimer</button>
-              </td>
-            </tr>
-            <tr>
-              <td scope='row'>2</td>
-              <td>Malaria</td>
-              <td>Fièvre, Maux de tête, Froid</td>
-              <td>
-                <button type='submit' className='btn btn-primary'><i className="fa fa-edit"></i>  Modifier</button>
-                <button className='buttonS btn btn-danger' type='submit'><i className="fa fa-trash"></i> Supprimer</button>
-              </td>
-            </tr>
-            <tr>
-              <td scope='row'>3</td>
-              <td colSpan={2}>Larry the Bird</td>
-              <td>
-                <button type='submit' className='btn btn-primary' onClick={handleShowMaladie}><i className="fa fa-edit"></i> Modifier</button>
+        <NewMaladie
+        /* show={showAjoutMal}
+         handeShow={handleShowMal}
+         handleClose={handleCloseMal}*/
+        />
 
-                <button className='buttonS btn btn-danger' type='submit'><i className="fa fa-trash"></i> Supprimer</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <NewMaladie
-        show={showAjoutMal}
-        handeShow={handleShowMal}
-        handleClose={handleCloseMal}
-      />
-
-      <EditMaladie
-        show={showEditMaladie}
+        <EditMaladie
+        /*show={showEditMaladie}
         handleShow={handleShowMaladie}
-        handleClose={handleCloseMaladie}
-      />
-   </div>
-  )
+        handleClose={handleCloseMaladie}*/
+        />
+
+      </div>
+    )
+  }
+
+
 }
 
 export default Maladies

@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import '../css/Connexion.css';
     
 const Connexion = () => {
@@ -31,7 +30,6 @@ const Connexion = () => {
             </form>
 
         </div>
-
 
     )
 }

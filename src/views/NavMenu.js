@@ -8,7 +8,10 @@ import Menu from "./Menu";
 
 import React from 'react'
 
-function NavMenu() {
+function NavMenu(props) {
+
+    let maladies = props.maladies;;
+    console.log("hdfbfhvhfv", maladies)
     return (
         <BrowserRouter>
             <Menu />
