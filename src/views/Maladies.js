@@ -48,9 +48,13 @@ class Maladies extends Component {
     this.deleteMaladie(id);
   };
 
+  onEdit = (data) => {
+    console.log('Edition', data);
+  };
+
   render() {
     let maladies = this.state.maladies;
-    console.log("Yoka", maladies)
+    console.log("List de maladies", maladies)
     return (
       <div>
         <div className='centerData'>
@@ -90,7 +94,14 @@ class Maladies extends Component {
             </thead>
             <tbody>
               {maladies.map(maladie => {
-                return <ListMaladies maladies={maladie} key={maladie.id} onDelete={this.onDelete} />
+                return (
+                  <ListMaladies
+                    maladies={maladie}
+                    key={maladie.id}
+                    onDelete={this.onDelete}
+                    onEdit={this.onEdit}
+                  />
+                )
               })
               }
             </tbody>

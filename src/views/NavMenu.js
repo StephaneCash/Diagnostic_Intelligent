@@ -10,8 +10,6 @@ import React from 'react'
 
 function NavMenu(props) {
 
-    let maladies = props.maladies;;
-    console.log("hdfbfhvhfv", maladies)
     return (
         <BrowserRouter>
             <Menu />

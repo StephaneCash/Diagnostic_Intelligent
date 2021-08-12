@@ -5,7 +5,7 @@ import NavMenu from './NavMenu';
 
 function MainContainer(props) {
     let maladies = props.maladies;
-    console.log('Maladies', maladies);
+    //console.log('Maladies', maladies);
     return (
         <div className="mainContainer">
             <UpContainer 
