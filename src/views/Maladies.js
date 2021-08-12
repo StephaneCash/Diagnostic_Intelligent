@@ -22,6 +22,7 @@ class Maladies extends Component {
     login: "okenhde",
     password: "",
     maladies: [],
+    maladie: {},
     loader: false,
     url: "http://localhost:8000/api/maladies"
   }
@@ -50,6 +51,7 @@ class Maladies extends Component {
 
   onEdit = (data) => {
     console.log('Edition', data);
+    this.setState({ maladie: data });
   };
 
   render() {
@@ -114,9 +116,7 @@ class Maladies extends Component {
         />
 
         <EditMaladie
-        /*show={showEditMaladie}
-        handleShow={handleShowMaladie}
-        handleClose={handleCloseMaladie}*/
+          maladie = {this.state.maladie}
         />
 
       </div>
