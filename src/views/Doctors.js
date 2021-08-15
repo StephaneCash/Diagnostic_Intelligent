@@ -1,11 +1,6 @@
 import React from 'react'
 
 function Doctors() {
-
-    let tdActive = document.getElementById('');
-    const onMouseOver = () => {
-
-    }
     return (
         <div>
             <div className="centerData">

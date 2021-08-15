@@ -1,0 +1,11 @@
+.centerData .data{
+    border: 1px solid silver;
+    margin-top: 16px !important;
+    border-radius: 5px !important;
+}
+
+.centerData .maladieAndSearch{
+    border: 1px solid silver;
+    padding: 10px;
+    border-radius: 5px;
+}

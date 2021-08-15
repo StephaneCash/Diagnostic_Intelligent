@@ -8,21 +8,14 @@ import Loader from "../dialog/Loader";
 
 
 class Maladies extends Component {
-  // AjoutMaladie
-  /*const [showAjoutMal, setAjoutMal] = useState(false)
-  const handleShowMal = () => setAjoutMal(true)
-  const handleCloseMal = () => setAjoutMal(false)
-
-  // EditMaladie
-  const [showEditMaladie, setEditMaladie] = useState(false)
-  const handleShowMaladie = () => setEditMaladie(true)
-  const handleCloseMaladie = () => setEditMaladie(false)*/
 
   state = {
     login: "okenhde",
     password: "",
     maladies: [],
     maladie: {},
+    findMaladie: [],
+    lower: [],
     loader: false,
     url: "http://localhost:8000/api/maladies"
   }
@@ -89,33 +82,28 @@ class Maladies extends Component {
     }
   };
 
+  handleSearchMaladie = (e) => {
+    console.log("Valeur recuperee", e.target.value);
+    let value = e.target.value;
+    this.setState({ findMaladie: value, lower: value.toLowerCase() });
+    //console.log('Maladie entrée', this.state.findMaladie);
+  }
 
   render() {
     let maladies = this.state.maladies;
-    console.log("List de maladies", maladies)
+    //console.log("List de maladies", maladies)
     return (
       <div>
         <div className='centerData'>
-          <div className='hr1' />
           <div className='maladieAndSearch d-flex'>
             <div className='newMaladie'>
-              <button
-                className='buttonMaladie btn btn-success'
-                onClick={this.onEdit}
-              >
-                <i className='fa fa-plus'></i>
-                Ajout Maladie
-              </button>
+              <h4 style={{ color: "green", fontSize: "28px" }}> <i style={{ color: "red", fontSize: "28px" }} className="fa fa-plus-circle"></i> DIAGNOSTIC</h4>
             </div>
 
-            <div className='searchMaladie input-group'>
-              <input type='search' placeholder='Rechercher' className='form-control' />
-              <button type='button' className='buttonMal btn btn-primary'>
-                <i className='fa fa-search' />
-              </button>
+            <div className='searchMaladie input-group mt-0'>
+              <input type='search' placeholder='Rechercher par nom' className='form-control h-5' onChange={this.handleSearchMaladie} />
             </div>
           </div>
-          <hr />
           <h1>Maladies et leurs symptômes</h1>
           {
             this.state.Loader ? <Loader /> : ""
@@ -125,7 +113,7 @@ class Maladies extends Component {
             onFormSubmit={this.onFormSubmit}
           />
           <table className='ui celled table data'>
-            <thead>
+            <thead className="">
               <tr>
                 <th style={{ width: "80px", textAlign: "center" }}>#</th>
                 <th>Nom</th>
@@ -135,7 +123,11 @@ class Maladies extends Component {
               </tr>
             </thead>
             <tbody>
-              {maladies.map(maladie => {
+              {maladies.filter((maladie) => {
+                return (
+                  (maladie.nom.toLowerCase() || maladie.type).includes(this.state.lower)
+                );
+              }).map(maladie => {
                 return (
                   <ListMaladies
                     maladies={maladie}
