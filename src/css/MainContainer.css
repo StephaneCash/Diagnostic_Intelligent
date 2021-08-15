@@ -111,3 +111,11 @@ h1 {
     font-size: 14px;    
     font-family:'Segoe UI';
 }
+
+.data{
+    margin-top: 0px !important;
+}
+
+thead tr th{
+    background-color: rgba(192, 192, 192, 0.116) !important;
+}

@@ -10,64 +10,152 @@ class EditMaladie extends Component {
             type: "",
             symptomes: "",
             description: "",
-            isEdit: false,
-            btnName: "Save",
-            btnClass: "btn btn-primary buttonNewMaladie"
-        }
+            isEdit: false
+        },
+        btnName: "Ajouter une maladie",
+        btnClass: "btn btn-primary buttonNewMaladie"
+
     }
 
-    isEmpty(obj){
+    isEmpty(obj) {
         return Object.entries(obj).length === 0 && obj.constructor === Object;
     }
 
-    componentDidUpdate(prevProps){
-        if(prevProps !== this.props && !this.isEmpty(this.props.maladie)){
-            console.log("update");
+    componentDidUpdate(prevProps) {
+        if (prevProps !== this.props && !this.isEmpty(this.props.maladie)) {
+            this.setState({
+                form: { ...this.props.maladie, isEdit: true },
+                btnName: "Editer cette maladie",
+                btnClass: 'btn btn-success buttonNewMaladie'
+            })
+            console.log("update", this.props.maladie);
         }
     }
 
+    handleChange = (event) => {
+        const { name, value } = event.target;
+        let form = this.state.form;
+        form[name] = value;
+        this.setState({ form });
+    };
+
+    onFormSubmit = (event) => {
+        event.preventDefault();
+
+        if (this.formValidation()) {
+            //console.log('valide')
+            this.props.onFormSubmit(this.state.form);
+        }
+
+        this.clearFormFields();
+    };
+
+    formValidation = () => {
+        if (document.getElementsByName("nom")[0].value === "") {
+            alert('Entrer le nom svp');
+            return false;
+        }
+
+        if (document.getElementsByName("type")[0].value === "") {
+            alert('Veuillez selectionner un type svp');
+            return false;
+        }
+
+        if (document.getElementsByName("symptomes")[0].value === "") {
+            alert('Veuillez entrer quelques symptomes');
+            return false;
+        }
+
+        if (document.getElementsByName("description")[0].value === "") {
+            alert('Veuillez entrer une déscription');
+            return false;
+        }
+
+        return true;
+    }
+
+    clearFormFields = () => {
+        this.setState({
+            form: {
+                nom: "",
+                type: "",
+                symptomes: "",
+                description: "",
+                isEdit: false
+            }
+        });
+
+        this.setState({
+            btnName: "Ajouter une maladie"
+        });
+
+        document.querySelector(".form").reset();
+    };
+
     render() {
         return (
-            <div>
-                <>
-                    <div className='newMaladie1'>
-                        <Modal animation={false} className="newMaladie1" backdrop="static" keyboard={false}>
-                            <Modal.Header closeButton>
-                                <Modal.Title><div className="title d-flex">
-                                    <i className="fa fa-plus editD" aria-hidden="true"></i>
-                                    Editer Maladie
-                                </div></Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <form className='col-12 '>
-                                    <div className="form-group">
-                                        <label>Nom :</label>
-                                        <input type="text" placeholder="nom" className='form-control' />
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Type :</label>
-                                        <select className="form-control">
-                                            <option>-- Select --</option>
-                                            <option>Virus</option>
-                                            <option>Pandémie</option>
-                                        </select>
-                                    </div>
-                                    <div className="form-group">
-                                        <label>Symptômes :</label>
-                                        <input type="text" placeholder="Symptômes" className='form-control' />
-                                    </div>
-                                </form>
-                            </Modal.Body>
-                            <Modal.Footer className="">
-                                <div className="buttonNewMaladie1">
+            <form className='ui form d-flex'>
 
-                                </div>
-                                <button type="submit" className={this.state.btnClass}>{this.state.btnName}</button>
-                            </Modal.Footer>
-                        </Modal>
-                    </div>
-                </>
-            </div>
+                <div className="four wide field">
+                    <label>Nom :</label> <br></br>
+                    <input
+                        type="text"
+                        placeholder="nom"
+                        className="form-control"
+                        name="nom"
+                        id="nom"
+                        onChange={this.handleChange}
+                        value={this.state.form.nom}
+                    />
+                </div>
+
+                <div className="four wide field">
+                    <label>Type :</label><br></br>
+                    <input
+                        type="text"
+                        placeholder="Type"
+                        className="form-control"
+                        name="type"
+                        id="type"
+                        onChange={this.handleChange}
+                        value={this.state.form.type}
+                    />
+                </div>
+
+                <div className="four wide field">
+                    <label>Symptômes :</label><br></br>
+                    <input
+                        type="text"
+                        name="symptomes"
+                        id="symptomes"
+                        className="form-control"
+                        placeholder="Symptômes"
+                        onChange={this.handleChange}
+                        value={this.state.form.symptomes}
+                    />
+                </div>
+
+                <div className="four wide field">
+                    <label>Déscription  :</label><br></br>
+                    <input
+                        type="text"
+                        name="description"
+                        id="description"
+                        className="form-control"
+                        placeholder="Description"
+                        onChange={this.handleChange}
+                        value={this.state.form.description}
+                    />
+                </div>
+                <div className="four wide field">
+                    <button
+                        type="submit"
+                        id="formButton"
+                        className={this.state.btnClass} onClick={this.onFormSubmit}>
+                        {this.state.btnName}
+                    </button>
+                </div>
+            </form>
         )
     }
 }

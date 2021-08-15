@@ -44,6 +44,32 @@ class Maladies extends Component {
     this.getMaladies();
   }
 
+  createMaladie = async data => {
+    this.setState({ Loader: true });
+
+    await axios.post(this.state.url, {
+      nom: data.nom,
+      type: data.type,
+      symptomes: data.symptomes,
+      description: data.description
+    });
+
+    this.getMaladies();
+  }
+
+  editMalad = async (data) => {
+    this.setState({ maladie: {}, Loader: true });
+
+    await axios.put(`${this.state.url}/${data.id}`, {
+      nom: data.nom,
+      type: data.type,
+      symptomes: data.symptomes,
+      description: data.description
+    });
+
+    this.getMaladies();
+  }
+
   onDelete = (id) => {
     console.log('Suppessiosn', id);
     this.deleteMaladie(id);
@@ -53,6 +79,16 @@ class Maladies extends Component {
     console.log('Edition', data);
     this.setState({ maladie: data });
   };
+
+  onFormSubmit = data => {
+
+    if (data.isEdit) {
+      this.editMalad(data);
+    } else {
+      this.createMaladie(data);
+    }
+  };
+
 
   render() {
     let maladies = this.state.maladies;
@@ -65,7 +101,7 @@ class Maladies extends Component {
             <div className='newMaladie'>
               <button
                 className='buttonMaladie btn btn-success'
-                onClick="{handleShowMal}"
+                onClick={this.onEdit}
               >
                 <i className='fa fa-plus'></i>
                 Ajout Maladie
@@ -84,14 +120,18 @@ class Maladies extends Component {
           {
             this.state.Loader ? <Loader /> : ""
           }
-          <table className='table table'>
+          <EditMaladie
+            maladie={this.state.maladie}
+            onFormSubmit={this.onFormSubmit}
+          />
+          <table className='ui celled table data'>
             <thead>
               <tr>
-                <th scope='col'>N°</th>
-                <th scope='col'>Nom</th>
-                <th scope='col'>Type</th>
-                <th scope='col'>Symptômes</th>
-                <th scope='col' className="idTable3">Actions</th>
+                <th style={{ width: "80px", textAlign: "center" }}>#</th>
+                <th>Nom</th>
+                <th>Type</th>
+                <th >Symptômes</th>
+                <th style={{ width: "268px" }}>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -113,10 +153,6 @@ class Maladies extends Component {
         /* show={showAjoutMal}
          handeShow={handleShowMal}
          handleClose={handleCloseMal}*/
-        />
-
-        <EditMaladie
-          maladie = {this.state.maladie}
         />
 
       </div>

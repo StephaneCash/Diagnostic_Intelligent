@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 
 class ListMaladies extends Component {
 
-    onDelete = () =>{
+    onDelete = () => {
         this.props.onDelete(this.props.maladies.id);
     }
 
-    onEdit = () =>{
+    onEdit = () => {
         this.props.onEdit(this.props.maladies);
     }
 
@@ -16,10 +16,10 @@ class ListMaladies extends Component {
         return (
             <>
                 <tr key={maladies.id}>
-                    <td>{maladies.id}</td>
-                    <td className="idTable">{maladies.nom}</td>
-                    <td className="idTable1">{maladies.type}</td>
-                    <td className="idTable2">{maladies.symptomes}</td>
+                    <td style={{ textAlign: "center" }}>{maladies.id}</td>
+                    <td>{maladies.nom}</td>
+                    <td>{maladies.type}</td>
+                    <td>{maladies.symptomes}</td>
                     <td><button type='submit' className='btn btn-primary bt1' onClick={this.onEdit}><i className="fa fa-edit"></i> Modifier</button>
                         <button className='buttonS btn btn-danger bt2' type='submit' onClick={this.onDelete}><i className="fa fa-trash"></i> Supprimer</button></td>
                 </tr>
