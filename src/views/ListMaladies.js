@@ -21,10 +21,13 @@ class ListMaladies extends Component {
                     <td>{maladies.type}</td>
                     <td>{maladies.symptomes}</td>
                     <td>
-                        <button type='submit' className='btn btn-primary bt1' onClick={this.onEdit}>
+                        <button className='buttonS btn btn bt3' type='submit'>
+                            <i className="fa fa-info-circle"></i> Détails
+                        </button>
+                        <button type='submit' className='btn btn bt1' onClick={this.onEdit}>
                             <i className="fa fa-edit"></i> Modifier
                         </button>
-                        <button className='buttonS btn btn-danger bt2' type='submit' onClick={this.onDelete}>
+                        <button className='buttonS btn btn bt2' type='submit' onClick={this.onDelete}>
                             <i className="fa fa-trash"></i> Supprimer
                         </button>
                     </td>

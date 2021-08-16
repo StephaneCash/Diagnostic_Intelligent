@@ -25,6 +25,9 @@
     background-color: #02022d;
     transform: translateX(-50%);
 }
+.buttonConnexion:active{
+    transform: scale(0);
+}
 
 .iconeConn {
     background: #02022d;

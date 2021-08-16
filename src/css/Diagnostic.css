@@ -39,3 +39,22 @@
 .buttonDiagnostic{
     margin-top: 10px;
 }
+
+.diagnostic .repTrouvee{
+    width: 50%;
+    margin: auto;
+    border: 1px solid silver;
+    height: auto;
+    margin-top: 20px;
+    border-radius: 3px;
+}
+
+.diagnostic .selectSymptomes{
+    width: 85%;
+    margin-left: 23px !important;
+}
+
+.diagnostic .btnValider{
+    margin-left: 23px;
+    margin-bottom: 45px !important;
+}

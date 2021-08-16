@@ -104,3 +104,31 @@ h1 {
 thead tr th{
     background-color: rgba(192, 192, 192, 0.116) !important;
 }
+
+.bt3{
+    margin-right: 4px;
+    padding: 4.5px 6px;
+    width: 100px;
+    color: white;
+    background-color: #0b5ed7;
+}
+
+.bt3:hover{
+    background-color: none;
+    color: white
+}
+
+.bt1:hover{
+    background-color: none;
+    color: white
+}
+
+.bt1{
+    background-color: #157347;
+    color: white;
+}
+
+.bt2{
+    color: white;
+    background-color: rgba(255, 0, 0, 0.753);
+}

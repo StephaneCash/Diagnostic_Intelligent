@@ -14,7 +14,7 @@ class Maladies extends Component {
     password: "",
     maladies: [],
     maladie: {},
-    findMaladie: [],
+    findMaladie: "",
     lower: [],
     loader: false,
     url: "http://localhost:8000/api/maladies"
@@ -92,6 +92,10 @@ class Maladies extends Component {
   render() {
     let maladies = this.state.maladies;
     //console.log("List de maladies", maladies)
+
+    let valLong = maladies.length;
+    console.log('Taille', valLong);
+
     return (
       <div>
         <div className='centerData'>
@@ -104,7 +108,7 @@ class Maladies extends Component {
               <input type='search' placeholder='Rechercher par nom' className='form-control h-5' onChange={this.handleSearchMaladie} />
             </div>
           </div>
-          <h1>Maladies et leurs symptômes</h1>
+          <h1>Maladies et leurs symptômes ({ valLong})</h1>
           {
             this.state.Loader ? <Loader /> : ""
           }
@@ -119,13 +123,13 @@ class Maladies extends Component {
                 <th>Nom</th>
                 <th>Type</th>
                 <th >Symptômes</th>
-                <th style={{ width: "268px" }}>Actions</th>
+                <th style={{ width: "338px" }}>Actions</th>
               </tr>
             </thead>
             <tbody>
               {maladies.filter((maladie) => {
                 return (
-                  (maladie.nom.toLowerCase() || maladie.type).includes(this.state.lower)
+                  maladie.nom.toLowerCase().includes(this.state.lower)
                 );
               }).map(maladie => {
                 return (
@@ -150,7 +154,6 @@ class Maladies extends Component {
       </div>
     )
   }
-
 
 }
 

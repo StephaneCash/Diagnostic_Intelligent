@@ -9,7 +9,7 @@ import React, { Component } from 'react'
 export default class App extends Component {
 
   state = {
-    login: "okenhde",
+    login: "okende",
     password: "",
     maladies: [],
     url: "http://localhost:8000/api/maladies"
@@ -29,7 +29,7 @@ export default class App extends Component {
       <div className="app">
 
         {
-          (this.state.login === "okende") ?
+          (this.state.login === "okendne") ?
             (
               <div>
                 <Connexion />
