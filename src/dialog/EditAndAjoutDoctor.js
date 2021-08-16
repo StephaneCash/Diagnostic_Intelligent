@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import { Modal } from 'react-bootstrap';
 import "../css/NewMaladie.css";
 
-class EditMaladie extends Component {
+class EditAndAjoutDoctor extends Component {
 
     state = {
         form: {
             nom: "",
-            type: "",
-            symptomes: "",
-            description: "",
+            postnom: "",
+            prenom: "",
+            specialte: "",
+            adress: "",
+            contact: "",
             isEdit: false
         },
-        btnName: "Ajouter une maladie",
+        btnName: "Ajouter un docteur",
         btnClass: "btn btn-primary buttonNewMaladie"
 
     }
@@ -22,13 +23,13 @@ class EditMaladie extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps !== this.props && !this.isEmpty(this.props.maladie)) {
+        if (prevProps !== this.props && !this.isEmpty(this.props.doctor)) {
             this.setState({
-                form: { ...this.props.maladie, isEdit: true },
-                btnName: "Editer cette maladie",
+                form: { ...this.props.doctor, isEdit: true },
+                btnName: "Editer ce docteur",
                 btnClass: 'btn btn-success buttonNewMaladie'
             })
-            console.log("update", this.props.maladie);
+            console.log("update", this.props.doctor);
         }
     }
 
@@ -46,7 +47,6 @@ class EditMaladie extends Component {
             //console.log('valide')
             this.props.onFormSubmit(this.state.form);
         }
-
         this.clearFormFields();
     };
 
@@ -56,8 +56,13 @@ class EditMaladie extends Component {
             return false;
         }
 
-        if (document.getElementsByName("type")[0].value === "") {
-            alert('Veuillez entrer un type svp');
+        if (document.getElementsByName("postnom")[0].value === "") {
+            alert('Entrer un postnom svp');
+            return false;
+        }
+
+        if (document.getElementsByName("prenom")[0].value === "") {
+            alert('Veuillez entrer un prenom svp');
             return false;
         }
 
@@ -160,4 +165,4 @@ class EditMaladie extends Component {
     }
 }
 
-export default EditMaladie;
+export default EditAndAjoutDoctor;

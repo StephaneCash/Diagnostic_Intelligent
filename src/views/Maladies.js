@@ -5,6 +5,7 @@ import axios from 'axios';
 import React, { Component } from 'react'
 import ListMaladies from './ListMaladies';
 import Loader from "../dialog/Loader";
+import DetailMaladie from "../dialog/DetailMaladie";
 
 
 class Maladies extends Component {
@@ -15,6 +16,8 @@ class Maladies extends Component {
     maladies: [],
     maladie: {},
     findMaladie: "",
+    showDetail: false,
+    data: [],
     lower: [],
     loader: false,
     url: "http://localhost:8000/api/maladies"
@@ -89,6 +92,16 @@ class Maladies extends Component {
     //console.log('Maladie entrée', this.state.findMaladie);
   }
 
+  handleShowDetail = (id, data) => {
+    this.setState({ showDetail: true });
+    this.setState({ data: id });
+    console.log("Données recues", id);
+  }
+
+  handleCloseDetail = () => {
+    this.setState({ showDetail: false });
+  }
+
   render() {
     let maladies = this.state.maladies;
     //console.log("List de maladies", maladies)
@@ -108,7 +121,7 @@ class Maladies extends Component {
               <input type='search' placeholder='Rechercher par nom' className='form-control h-5' onChange={this.handleSearchMaladie} />
             </div>
           </div>
-          <h1>Maladies et leurs symptômes ({ valLong})</h1>
+          <h1>Maladies et leurs symptômes ({valLong})</h1>
           {
             this.state.Loader ? <Loader /> : ""
           }
@@ -138,12 +151,18 @@ class Maladies extends Component {
                     key={maladie.id}
                     onDelete={this.onDelete}
                     onEdit={this.onEdit}
+                    onViewShowDetail={this.handleShowDetail}
                   />
                 )
               })
               }
             </tbody>
           </table>
+          <DetailMaladie
+            show={this.state.showDetail}
+            data={this.state.data}
+            close={this.handleCloseDetail}
+          />
         </div>
         <NewMaladie
         /* show={showAjoutMal}

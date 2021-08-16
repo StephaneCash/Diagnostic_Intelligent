@@ -1,69 +1,107 @@
-import React from 'react'
+import React, { Component } from 'react'
+import axios from 'axios';
+import ListDoctors from './ListDoctors';
+import Loader from "../dialog/Loader";
+class Doctors extends Component {
 
-function Doctors() {
-    return (
-        <div>
-            <div className="centerData">
-                <div className="hr1"></div>
-                <div className="maladieAndSearch d-flex">
-                    <div className="newMaladie">
-                        <button className="buttonMaladie btn btn-success"><i className="fa fa-plus"></i> Ajout Docteur</button>
+    state = {
+        doctors: [],
+        doctor: [],
+        findDoctor: "",
+        lower: "",
+        loader: false,
+        url: "http://localhost:8000/api/doctors"
+    }
+
+    getDoctors = async () => {
+        this.setState({ Loader: true })
+        const doctors = await axios.get(this.state.url);
+        this.setState({ doctors: doctors.data, Loader: false });
+    };
+
+    deleteDoctor = async id => {
+        this.setState({ Loader: true });
+        await axios.delete(`${this.state.url}/${id}`);
+
+        this.getDoctors();
+    }
+
+    onDelete = (id) => {
+        console.log('Suppessiosn', id);
+        this.deleteDoctor(id);
+    };
+
+    onEdit = (data) => {
+        console.log('Edition', data);
+        this.setState({ doctor: data });
+    };
+
+    componentDidMount() {
+        this.getDoctors();
+    }
+
+    handleSearchDoctor = (e) => {
+        console.log("Valeur recuperee", e.target.value);
+        let value = e.target.value;
+        this.setState({ findDoctor: value, lower: value.toLowerCase() });
+        //console.log('Maladie entrée', this.state.findMaladie);
+    }
+
+    render() {
+        let doctors = this.state.doctors;
+        console.log("différents doctors", doctors)
+        return (
+            <div>
+                <div className="centerData">
+                    <div className='maladieAndSearch d-flex'>
+                        <div className='newMaladie'>
+                            <h4 style={{ color: "green", fontSize: "28px" }}> <i style={{ color: "red", fontSize: "28px" }} className="fa fa-plus-circle"></i> DIAGNOSTIC</h4>
+                        </div>
+
+                        <div className='searchMaladie input-group mt-0'>
+                            <input type='search' placeholder='Rechercher par nom' className='form-control h-5' onChange={this.handleSearchDoctor} />
+                        </div>
                     </div>
 
-                    <div className="searchMaladie input-group">
-                        <input type="search" placeholder="Recherche" className="form-control" />
-                        <button type="button" className="buttonMal btn btn-primary">
-                            <i className="fa fa-search" />
-                        </button>
-                    </div>
+                    <h1>
+                        Docteurs et leurs Spécialités
+                    </h1>
+
+                    {
+                        this.state.Loader ? <Loader /> : ""
+                    }
+                    <table className="ui celled table data">
+                        <thead>
+                            <tr>
+                                <th style={{ width: "80px", textAlign: "center" }}>N°</th>
+                                <th >Noms</th>
+                                <th >Spécialité</th>
+                                <th >Adresse</th>
+                                <th style={{ width: "358px" }}>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {doctors.filter((doctor) => {
+                                return (
+                                    doctor.nom.toLowerCase().includes(this.state.lower)
+                                );
+                            }).map(doctor => {
+                                return (
+                                    <ListDoctors
+                                        doctors={doctor}
+                                        key={doctor.id}
+                                        onDelete={this.onDelete}
+                                        onEdit={this.onEdit}
+                                    />
+                                )
+                            })
+                            }
+                        </tbody>
+                    </table>
                 </div>
-
-                <h1>
-                    Docteurs et Spécialités
-                </h1>
-                <hr/>
-                <table className="table table ">
-                    <thead>
-                        <tr>
-                            <th scope="col">N°</th>
-                            <th scope="col">Noms</th>
-                            <th scope="col">Spécialité</th>
-                            <th scope="col" style={{ width: '16%' }}>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td scope="row">1</td>
-                            <td>Franc Mula</td>
-                            <td>Otto</td>
-                            <td>
-                                <button className='buttonC btn btn-success' type="submit">Contacter</button>
-                                <button type="submit" className='btn btn-primary'>Modifier</button>
-                                <button className='buttonS btn btn-danger' type="submit">Supprimer</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">2</td>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>
-                                <button type="submit" className='btn btn-primary'>Modifier</button>
-                                <button className='buttonS btn btn-danger' type="submit">Supprimer</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td scope="row">3</td>
-                            <td colSpan={2}>Larry the Bird</td>
-                            <td>
-                                <button type="submit" className='btn btn-primary'>Modifier</button>
-                                <button className='buttonS btn btn-danger' type="submit">Supprimer</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default Doctors

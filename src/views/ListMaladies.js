@@ -8,6 +8,11 @@ class ListMaladies extends Component {
 
     onEdit = () => {
         this.props.onEdit(this.props.maladies);
+        console.log("Données edit", this.props.maladies);
+    }
+
+    onViewShowDetail = () =>{
+        this.props.onViewShowDetail(this.props.maladies);
     }
 
     render() {
@@ -21,7 +26,7 @@ class ListMaladies extends Component {
                     <td>{maladies.type}</td>
                     <td>{maladies.symptomes}</td>
                     <td>
-                        <button className='buttonS btn btn bt3' type='submit'>
+                        <button className='buttonS btn btn bt3' type='submit' onClick={this.onViewShowDetail} >
                             <i className="fa fa-info-circle"></i> Détails
                         </button>
                         <button type='submit' className='btn btn bt1' onClick={this.onEdit}>
