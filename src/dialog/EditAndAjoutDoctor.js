@@ -26,7 +26,7 @@ class EditAndAjoutDoctor extends Component {
         if (prevProps !== this.props && !this.isEmpty(this.props.doctor)) {
             this.setState({
                 form: { ...this.props.doctor, isEdit: true },
-                btnName: "Editer ce docteur",
+                btnName: "Editer docteur",
                 btnClass: 'btn btn-success buttonNewMaladie'
             })
             console.log("update", this.props.doctor);
@@ -66,13 +66,18 @@ class EditAndAjoutDoctor extends Component {
             return false;
         }
 
-        if (document.getElementsByName("symptomes")[0].value === "") {
-            alert('Veuillez entrer quelques symptomes');
+        if (document.getElementsByName("specialte")[0].value === "") {
+            alert('Veuillez entrer une specialité svp');
             return false;
         }
 
-        if (document.getElementsByName("description")[0].value === "") {
-            alert('Veuillez entrer une déscription');
+        if (document.getElementsByName("adress")[0].value === "") {
+            alert('Veuillez entrer une adresse');
+            return false;
+        }
+
+        if (document.getElementsByName("contact")[0].value === "") {
+            alert('Veuillez entrer des contacts');
             return false;
         }
 
@@ -83,15 +88,17 @@ class EditAndAjoutDoctor extends Component {
         this.setState({
             form: {
                 nom: "",
-                type: "",
-                symptomes: "",
-                description: "",
+                postnom: "",
+                prenom: "",
+                specialte: "",
+                adress: "",
+                contact: "",
                 isEdit: false
             }
         });
 
         this.setState({
-            btnName: "Ajouter une maladie"
+            btnName: "Ajouter un docteur"
         });
 
         document.querySelector(".form").reset();
@@ -115,41 +122,67 @@ class EditAndAjoutDoctor extends Component {
                 </div>
 
                 <div className="four wide field">
-                    <label>Type :</label><br></br>
+                    <label>Postnom :</label><br></br>
                     <input
                         type="text"
-                        placeholder="Type"
+                        placeholder="Postnom"
                         className="form-control"
-                        name="type"
-                        id="type"
+                        name="postnom"
+                        id="postnom"
                         onChange={this.handleChange}
-                        value={this.state.form.type}
+                        value={this.state.form.postnom}
                     />
                 </div>
 
                 <div className="four wide field">
-                    <label>Symptômes :</label><br></br>
+                    <label>Prénom :</label><br></br>
                     <input
                         type="text"
-                        name="symptomes"
-                        id="symptomes"
+                        name="prenom"
+                        id="prenom"
                         className="form-control"
-                        placeholder="Symptômes"
+                        placeholder="Prénom"
                         onChange={this.handleChange}
-                        value={this.state.form.symptomes}
+                        value={this.state.form.prenom}
                     />
                 </div>
 
                 <div className="four wide field">
-                    <label>Déscription  :</label><br></br>
+                    <label>Spécialité  :</label><br></br>
                     <input
                         type="text"
-                        name="description"
-                        id="description"
+                        name="specialte"
+                        id="specialte"
                         className="form-control"
-                        placeholder="Description"
+                        placeholder="Specialité"
                         onChange={this.handleChange}
-                        value={this.state.form.description}
+                        value={this.state.form.specialte}
+                    />
+                </div>
+
+                <div className="four wide field">
+                    <label>Spécialité :</label><br></br>
+                    <input
+                        type="text"
+                        name="adress"
+                        id="adress"
+                        className="form-control"
+                        placeholder="Adresse"
+                        onChange={this.handleChange}
+                        value={this.state.form.adress}
+                    />
+                </div>
+
+                <div className="four wide field">
+                    <label>Contacts :</label><br></br>
+                    <input
+                        type="text"
+                        name="contact"
+                        id="contact"
+                        className="form-control"
+                        placeholder="Contacts..."
+                        onChange={this.handleChange}
+                        value={this.state.form.contact}
                     />
                 </div>
                 <div className="four wide field">

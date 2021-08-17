@@ -19,3 +19,9 @@
     margin-right: 30px;
 
 }
+
+#formButton{
+    border: 1px solid blue;
+    margin-left: 1px;
+    width: 12px
+}

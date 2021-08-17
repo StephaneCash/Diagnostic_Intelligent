@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import ListDoctors from './ListDoctors';
 import Loader from "../dialog/Loader";
+import EditAndAjoutDoctor from '../dialog/EditAndAjoutDoctor';
 class Doctors extends Component {
 
     state = {
@@ -36,12 +37,51 @@ class Doctors extends Component {
         this.setState({ doctor: data });
     };
 
+    editDoct = async (data) => {
+        this.setState({ doctor: {}, Loader: true });
+
+        await axios.put(`${this.state.url}/${data.id}`, {
+            nom: data.nom,
+            postnom: data.postnom,
+            prenom: data.prenom,
+            specialte: data.specialte,
+            adress: data.adress,
+            contact: data.contact
+        });
+
+        this.getDoctors();
+    }
+
+    createDoctor = async data => {
+        this.setState({ Loader: true });
+    
+        await axios.post(this.state.url, {
+            nom: data.nom,
+            postnom: data.postnom,
+            prenom: data.prenom,
+            specialte: data.specialte,
+            adress: data.adress,
+            contact: data.contact
+        });
+    
+        this.getDoctors();
+      }
+
+    onFormSubmit = data => {
+
+        if (data.isEdit) {
+          this.editDoct(data);
+        } else {
+          this.createDoctor(data);
+        }
+      };
+
     componentDidMount() {
         this.getDoctors();
     }
 
     handleSearchDoctor = (e) => {
-        console.log("Valeur recuperee", e.target.value);
+        // console.log("Valeur recuperee", e.target.value);
         let value = e.target.value;
         this.setState({ findDoctor: value, lower: value.toLowerCase() });
         //console.log('Maladie entrée', this.state.findMaladie);
@@ -49,7 +89,7 @@ class Doctors extends Component {
 
     render() {
         let doctors = this.state.doctors;
-        console.log("différents doctors", doctors)
+        // console.log("différents doctors", doctors)
         return (
             <div>
                 <div className="centerData">
@@ -70,6 +110,11 @@ class Doctors extends Component {
                     {
                         this.state.Loader ? <Loader /> : ""
                     }
+
+                    <EditAndAjoutDoctor
+                        doctor={this.state.doctor}
+                        onFormSubmit={this.onFormSubmit}
+                    />
                     <table className="ui celled table data">
                         <thead>
                             <tr>

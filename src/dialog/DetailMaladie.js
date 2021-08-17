@@ -6,7 +6,8 @@ class DetailMaladie extends Component {
     render() {
 
         let data = this.props.data;
-        console.log("Data", data);
+       // console.log("Data", data);
+       
         return (
             <>
                 <Modal show={this.props.show} className="modalDetail">

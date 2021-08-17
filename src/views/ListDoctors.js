@@ -13,7 +13,7 @@ class ListDoctors extends Component {
     render() {
         // Récuperation de données de doctors venant de props
         let doctors = this.props.doctors;
-        console.log('doctors listDoctors', doctors)
+        // console.log('doctors listDoctors', doctors)
         return (
             <>
                 <tr key={doctors.id}>
