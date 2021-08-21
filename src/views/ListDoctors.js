@@ -10,6 +10,10 @@ class ListDoctors extends Component {
         this.props.onEdit(this.props.doctors);
     }
 
+    onViewShowDetail = () => {
+        this.props.onViewShowDetail(this.props.doctors);
+    }
+
     render() {
         // Récuperation de données de doctors venant de props
         let doctors = this.props.doctors;
@@ -22,7 +26,7 @@ class ListDoctors extends Component {
                     <td>{doctors.specialte}</td>
                     <td>{doctors.adress}</td>
                     <td>
-                        <button className='buttonS btn btn bt3' type='submit'>
+                        <button className='buttonS btn btn bt3' type='submit' onClick={this.onViewShowDetail} >
                             <i className="fa fa-info-circle"></i> Détails
                         </button>
                         <button type='submit' className='btn btn bt1' onClick={this.onEdit}>

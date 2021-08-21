@@ -161,7 +161,7 @@ class EditAndAjoutDoctor extends Component {
                 </div>
 
                 <div className="four wide field">
-                    <label>Spécialité :</label><br></br>
+                    <label>Adresse :</label><br></br>
                     <input
                         type="text"
                         name="adress"

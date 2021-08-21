@@ -2,34 +2,34 @@ import { Component } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import '../css/DetailMaladieModal.css';
 
-class DetailMaladie extends Component {
+class DetailDoctor extends Component {
     render() {
 
         let data = this.props.data;
-        // console.log("Data", data);
-
+         console.log("Data", data);
+       
         return (
             <>
                 <Modal show={this.props.show} className="modalDetail">
-                    <Modal.Header>DETAIL DE MALADIE {data.nom} </Modal.Header>
+                    <Modal.Header>DETAIL DOCTEUR</Modal.Header>
                     <Modal.Body>
                         <table className="table ">
                             <thead>
                                 <tr>
                                     <th >#</th>
-                                    <th>Nom</th>
-                                    <th>Type</th>
-                                    <th>Symptome</th>
-                                    <th>Description</th>
+                                    <th>Noms</th>
+                                    <th>Specialité</th>
+                                    <th>Adresse</th>
+                                    <th>Contacts</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>{data.id}</td>
-                                    <td>{data.nom}</td>
-                                    <td>{data.type}</td>
-                                    <td>{data.symptomes}</td>
-                                    <td>{data.description}</td>
+                                    <td>{data.nom} {data.postnom} {data.prenom}</td>
+                                    <td>{data.specialte}</td>
+                                    <td>{data.adress}</td>
+                                    <td>{data.contact}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -45,4 +45,4 @@ class DetailMaladie extends Component {
     }
 }
 
-export default DetailMaladie;
+export default DetailDoctor;

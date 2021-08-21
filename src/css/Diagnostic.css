@@ -5,56 +5,30 @@
     left: 26.6%;
     width: 91%;
     border: 1px solid white;
-    background-color: #02022d;
     margin: auto;
     display: block;
     margin-top: 15px;
+    padding:10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    color: silver;
+    border: 1px solid thistle;
+    height:92vh;
 }
 
-.diagnostic .title {
-    padding: 10px;
-    font-size: 17px;
-}
-
-.diagnostic .contentDiagnostic {
+.diagnostic h3{
     border: 1px solid white;
-    height: 70vh;
-    background-color: white;
+    padding: 15px;
+    background-color: #02022d;
+    color: silver;
+    border-radius: 5px;
 }
 
+.diagnostic label{
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: bold;
+}
 .diagnostic .form{
-    padding: 20px;
     width: 50%;
-    margin: auto;
-    border: 1px solid silver;
-    margin-top: 20px;
-    border-radius: 3px;
-    height: auto;
-    color: black;
-}
-
-.buttonDiagnostic{
-    margin-top: 10px;
-}
-
-.diagnostic .repTrouvee{
-    width: 50%;
-    margin: auto;
-    border: 1px solid silver;
-    height: auto;
-    margin-top: 20px;
-    border-radius: 3px;
-}
-
-.diagnostic .selectSymptomes{
-    width: 85%;
-    margin-left: 23px !important;
-}
-
-.diagnostic .btnValider{
-    margin-left: 23px;
-    margin-bottom: 45px !important;
+    margin:auto;
 }

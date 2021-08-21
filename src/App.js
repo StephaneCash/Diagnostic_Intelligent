@@ -1,48 +1,35 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
-import axios from 'axios';
 import Connexion from './views/Connexion';
 import MainContainer from './views/MainContainer';
 import "./App.css";
-import React, { Component } from 'react'
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-export default class App extends Component {
+export default function App (props) {
 
-  state = {
-    login: "okende",
-    password: "",
-    maladies: [],
-    url: "http://localhost:8000/api/maladies"
-  }
+  var [isLogin, setLogin] = useState(true);
+  var [profil, setProfil] = useState({});
 
-  getMaladies = async () => {
-    const maladies = await axios.get(this.state.url);
-    this.setState({maladies: maladies.data});
-  };
+  console.log(props)
 
-  componentDidMount() {
-    this.getMaladies();
-  }
-
-  render() {
-    return (
-      <div className="app">
-
-        {
-          (this.state.login === "okendne") ?
-            (
-              <div>
-                <Connexion />
-              </div>
-            ) : (
-              <div>
-                <MainContainer 
-                  maladies = {this.state.maladies}
-                />
-              </div>
-            )
-        }
-      </div>
-    )
-  }
+  return (
+    <div className="app">
+      <Router>
+        <Switch>
+          {(() => {
+            if (isLogin === false) {
+              return <Route path="/" render={() => {
+                return (
+                  <Connexion state={setLogin} profil={setProfil} />
+                )
+              }} />
+            } else if(isLogin){
+              return <MainContainer profil={profil} />
+            }
+          })()}
+        </Switch>
+      </Router>
+    </div>
+  )
 }

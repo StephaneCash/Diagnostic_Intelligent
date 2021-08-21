@@ -3,6 +3,7 @@ import axios from 'axios';
 import ListDoctors from './ListDoctors';
 import Loader from "../dialog/Loader";
 import EditAndAjoutDoctor from '../dialog/EditAndAjoutDoctor';
+import DetailDoctor from '../dialog/DetailDoctor';
 class Doctors extends Component {
 
     state = {
@@ -10,6 +11,8 @@ class Doctors extends Component {
         doctor: [],
         findDoctor: "",
         lower: "",
+        show: false,
+        data: [],
         loader: false,
         url: "http://localhost:8000/api/doctors"
     }
@@ -54,7 +57,7 @@ class Doctors extends Component {
 
     createDoctor = async data => {
         this.setState({ Loader: true });
-    
+
         await axios.post(this.state.url, {
             nom: data.nom,
             postnom: data.postnom,
@@ -63,18 +66,18 @@ class Doctors extends Component {
             adress: data.adress,
             contact: data.contact
         });
-    
+
         this.getDoctors();
-      }
+    }
 
     onFormSubmit = data => {
 
         if (data.isEdit) {
-          this.editDoct(data);
+            this.editDoct(data);
         } else {
-          this.createDoctor(data);
+            this.createDoctor(data);
         }
-      };
+    };
 
     componentDidMount() {
         this.getDoctors();
@@ -85,6 +88,16 @@ class Doctors extends Component {
         let value = e.target.value;
         this.setState({ findDoctor: value, lower: value.toLowerCase() });
         //console.log('Maladie entrée', this.state.findMaladie);
+    }
+
+    handleShowDetail = (id) => {
+        this.setState({ show: true });
+        this.setState({ data: id });
+        console.log("Données recues", id);
+    }
+
+    handleModalDetailClose = () => {
+        this.setState({ show: false })
     }
 
     render() {
@@ -137,12 +150,18 @@ class Doctors extends Component {
                                         key={doctor.id}
                                         onDelete={this.onDelete}
                                         onEdit={this.onEdit}
+                                        onViewShowDetail={this.handleShowDetail}
                                     />
                                 )
                             })
                             }
                         </tbody>
                     </table>
+                    <DetailDoctor
+                        show={this.state.show}
+                        data={this.state.data}
+                        close={this.handleModalDetailClose}
+                    />
                 </div>
             </div>
         )

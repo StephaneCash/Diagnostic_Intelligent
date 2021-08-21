@@ -92,7 +92,7 @@ class Maladies extends Component {
     //console.log('Maladie entrée', this.state.findMaladie);
   }
 
-  handleShowDetail = (id, data) => {
+  handleShowDetail = (id) => {
     this.setState({ showDetail: true });
     this.setState({ data: id });
     console.log("Données recues", id);
@@ -121,6 +121,7 @@ class Maladies extends Component {
               <input type='search' placeholder='Rechercher par nom' className='form-control h-5' onChange={this.handleSearchMaladie} />
             </div>
           </div>
+
           <h1>Maladies et leurs symptômes ({valLong})</h1>
           {
             this.state.Loader ? <Loader /> : ""
