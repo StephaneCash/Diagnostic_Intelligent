@@ -1,7 +1,7 @@
 import '../css/Connexion.css';
 import { useState, useEffect } from 'react';
-import { useHistory } from "react-router-dom";
 import App from "../App";
+import { useHistory, Redirect } from "react-router-dom";
 
 
 const Connexion = (props) => {
@@ -13,6 +13,9 @@ const Connexion = (props) => {
     const [nom, setNom] = useState('');
     const [hide, setHide] = useState(false);
 
+    let history = useHistory();
+
+    console.log(history)
 
     const handleUsername = (e) => {
         setUsername(e.target.value);
@@ -22,17 +25,15 @@ const Connexion = (props) => {
         setPassword(e.target.value);
     }
 
-    let history = useHistory();
-
     const handleSubmit = (e) => {
         e.preventDefault();
         //console.log(password, username)
         if (username === "okende") {
             if (password === "111111") {
-                console.log("TRANQUILLE", props);
-               history.push({ pathname: '/Maladies' });
-               setNom("okende");
-               setHide(true);
+                //console.log("TRANQUILLE", props);
+                history.push('/Maladies');
+                setNom("okende");
+                setHide(true);
             }
         } else {
             setError('Nom d\'utilisateur ou mot de passe invalide');
@@ -99,7 +100,7 @@ const Connexion = (props) => {
             {
                 hide ? <App nom={nom} /> : ""
             }
-            
+
 
         </div>
     )

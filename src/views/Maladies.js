@@ -107,7 +107,9 @@ class Maladies extends Component {
     //console.log("List de maladies", maladies)
 
     let valLong = maladies.length;
-    console.log('Taille', valLong);
+    //console.log('Taille', valLong);
+
+    //console.log(this.props)
 
     return (
       <div>

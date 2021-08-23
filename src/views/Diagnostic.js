@@ -8,6 +8,14 @@ function Diagnostic(props) {
     const [symptome, setSymptome] = useState(null);
     const [filterSymptomes, setFilterSymptomes] = useState([]);
     const [hide, setHide] = useState(false);
+    const [symptomeSelected, setSymptomeSelected] = useState([]);
+    const [symptomeFindSelect, setSymptomeFindSelect] = useState('');
+    const [newTab, setNewTab] = useState([]);
+
+    /* var findSymptomes = ["a"];
+     findSymptomes.push(symptome);
+     console.log(findSymptomes);*/
+    var newT = [];
 
     useEffect(() => {
         fetch('http://localhost:8000/api/maladies')
@@ -25,8 +33,9 @@ function Diagnostic(props) {
         if (symptome !== null) {
             const filterMaladies = maladies.filter(maladie => maladie.symptomes.includes(symptome));
             setFilterSymptomes(filterMaladies);
-            console.log("Find", filterSymptomes)
+            //console.log("Find", filterMaladies)
             setHide(true);
+            findSympt(filterMaladies);
         } else {
             alert('Veuillez remplir ce champ svp');
             return false;
@@ -39,7 +48,23 @@ function Diagnostic(props) {
     }
 
     const handleSelectSymptome = (e) => {
+        console.log("Symptome selectionne", e.target.value)
+        setSymptomeFindSelect(e.target.value);
+    }
 
+    const findSympt = (filterSymptomes) => {
+        const symptomesSplit = filterSymptomes.map((sympt) => sympt.symptomes.split(","));
+        console.log(symptomesSplit)
+        setSymptomeSelected(symptomesSplit);
+    }
+
+    const newTabS = (data) => {
+        for (let i = 0; i < data.length; i++) {
+            newT = data[0].concat(data[1], data[2])
+            newT.forEach(element => {
+                console.log("New tab", element);
+            });
+        }
     }
 
     return (
@@ -62,14 +87,16 @@ function Diagnostic(props) {
                     }
                     <br />
                     <label>Choisir parmi ces symptômes</label>
-                    <select className="form-control mt-3" onChange={handleSelectSymptome}>
+                    <select className="form-control mt-3" value={symptomeFindSelect} onChange={handleSelectSymptome}>
                         {
-                            filterSymptomes.map((symptom, index) => {
-                                return <option key={index.id}>{symptom.symptomes.split(',')}</option>
-                            })
+                            newTabS(symptomeSelected)
                         }
                     </select>
                 </form> : ""
+            }
+
+            {
+
             }
 
         </div>
