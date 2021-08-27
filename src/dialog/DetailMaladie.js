@@ -19,8 +19,8 @@ class DetailMaladie extends Component {
                                     <th >#</th>
                                     <th>Nom</th>
                                     <th>Type</th>
-                                    <th>Symptome</th>
-                                    <th>Description</th>
+                                    <th>Symptômes</th>
+                                    <th>Déscription</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,8 +35,8 @@ class DetailMaladie extends Component {
                         </table>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button onClick={this.props.close}>
-                            Fermer
+                        <Button className="mt-0" onClick={this.props.close}>
+                            <i className="fa fa-close"></i> Fermer
                         </Button>
                     </Modal.Footer>
                 </Modal>

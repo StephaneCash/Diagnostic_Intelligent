@@ -1,10 +1,9 @@
 import '../css/Connexion.css';
 import { useState, useEffect } from 'react';
 import App from "../App";
-import { useHistory, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-
-const Connexion = (props) => {
+const Connexion = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -34,6 +33,10 @@ const Connexion = (props) => {
                 history.push('/Maladies');
                 setNom("okende");
                 setHide(true);
+            } else {
+                setError('Nom d\'utilisateur ou mot de passe invalide');
+                setPassword('');
+                setUsername('');
             }
         } else {
             setError('Nom d\'utilisateur ou mot de passe invalide');
@@ -54,14 +57,14 @@ const Connexion = (props) => {
     return (
         <div className="formulaireConnexion">
             <form onSubmit={handleSubmit}>
-                <h2 className="">Veuiller vous connecter</h2>
                 <div className="iconeConn"><div className="icon d-flex align-items-center justify-content-center">
                     <i className='iconUser fa fa-user-o mt-1 '></i> </div>
                 </div>
+                <h2 className="">Connexion</h2>
                 <br />
-                <h6 style={{ color: "red" }}> {error} </h6>
+                { error ?  <h6 style={{ color: "red", backgroundColor: "white", padding: "8px", borderRadius: "4px", fontSize:"15px" }}> {error} </h6> : ""} 
                 <div className="form-group">
-                    <label for="login" className="mt-2" labelText>Votre nom d'utilisateur ou email</label>
+                    <label for="login" className="form-label" labelText>Username </label>
                     <input
                         type="text"
                         className="form-control"
@@ -73,7 +76,7 @@ const Connexion = (props) => {
                 </div>
 
                 <div className="form-group mt-3">
-                    <label for="password">Password</label>
+                    <label for="password" className="form-label">Password</label>
                     <input
                         type="password"
                         className="form-control"
@@ -86,13 +89,13 @@ const Connexion = (props) => {
 
                 {
                     btn ? <button
-                        className="btn btn btnConnexion mt-5 form-control"
+                        className="btn btn btnConnexion mt-4 form-control"
                         style={{ backgroundColor: "#02022d", border: "1px solid white", color: "white" }}>
                         Se connecter
                     </button>
                         :
                         <button
-                            className="btn btn btnConnexion mt-5 form-control"
+                            className="btn btn btnConnexion mt-4 form-control"
                             style={{ backgroundColor: "silver", border: "1px solid white", color: "black" }} disabled>Se connecter</button>
                 }
 

@@ -4,6 +4,7 @@ import ListDoctors from './ListDoctors';
 import Loader from "../dialog/Loader";
 import EditAndAjoutDoctor from '../dialog/EditAndAjoutDoctor';
 import DetailDoctor from '../dialog/DetailDoctor';
+import Menu from './Menu';
 class Doctors extends Component {
 
     state = {
@@ -105,6 +106,7 @@ class Doctors extends Component {
         // console.log("différents doctors", doctors)
         return (
             <div>
+                <Menu />
                 <div className="centerData">
                     <div className='maladieAndSearch d-flex'>
                         <div className='newMaladie'>
@@ -128,14 +130,14 @@ class Doctors extends Component {
                         doctor={this.state.doctor}
                         onFormSubmit={this.onFormSubmit}
                     />
-                    <table className="ui celled table data">
+                    <table className="table table-striped table-bordered data">
                         <thead>
                             <tr>
-                                <th style={{ width: "80px", textAlign: "center" }}>N°</th>
-                                <th >Noms</th>
-                                <th >Spécialité</th>
+                                <th style={{ width: "30px", textAlign: "center" }}>N°</th>
+                                <th style={{ width: "188px" }} >Noms</th>
+                                <th style={{ width: "198px" }} >Spécialité</th>
                                 <th >Adresse</th>
-                                <th style={{ width: "358px" }}>Actions</th>
+                                <th style={{ width: "158px" }}>Actions</th>
                             </tr>
                         </thead>
                         <tbody>

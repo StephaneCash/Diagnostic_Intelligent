@@ -1,6 +1,6 @@
 import React from 'react'
 import '../css/Menu.css';
-import { NavLink} from 'react-router-dom';
+import { NavLink, Link} from 'react-router-dom';
 
 function Menu() {
     return (
@@ -28,10 +28,6 @@ function Menu() {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/Hop"><center><i className="IconHome fa fa-info-circle"></i></center>Help</NavLink>
-                </li>
-
-                <li>
                     <NavLink to="/Users">
                         <center>
                             <i className="IconHome fa fa-user"></i>
@@ -47,6 +43,10 @@ function Menu() {
                         Configuration
                     </NavLink>
                 </li>
+                <li>
+                    <Link to="/"><center><i className=" fa fa-user"></i></center>Déconnexion</Link>
+                </li>
+
             </ul>
         </div>
     )

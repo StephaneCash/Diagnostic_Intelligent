@@ -1,21 +1,13 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
-import Connect from './views/Connect';
-import MainContainer from './views/MainContainer';
 import "./App.css";
-import React, { useState } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import MainContainer from './views/MainContainer';
 
 
-export default function App(props) {
-
-  var [isLogin, setLogin] = useState(true  );
-
-  console.log(props)
-
+export default function App() {
   return (
     <div className="app">
-      <Connect />
+      <MainContainer></MainContainer>
     </div >
   )
 }

@@ -1,9 +1,12 @@
 import React from 'react'
 import '../css/Users.css';
+import Menu from './Menu';
 
 
 function Users() {
     return (
+        <>
+        <Menu />
         <div className="users">
             <p className="userActifs"><i className="fa fa-user-o"></i> Utilisateurs </p>
             <table className="table table-inverse">
@@ -39,9 +42,8 @@ function Users() {
                     </tr>
                 </tbody>
             </table>
-           
-
         </div>
+        </>
     )
 }
 

@@ -6,7 +6,8 @@ import React, { Component } from 'react'
 import ListMaladies from './ListMaladies';
 import Loader from "../dialog/Loader";
 import DetailMaladie from "../dialog/DetailMaladie";
-
+import Menu from './Menu';
+import { confirmAlert } from "react-confirm-alert";
 
 class Maladies extends Component {
 
@@ -67,7 +68,23 @@ class Maladies extends Component {
   }
 
   onDelete = (id) => {
+    /*confirmAlert({
+      title: "ConfirmToSubmit",
+      message: "Etes-vous sûr de vouloir supprimer cette filière ?",
+      buttons: [
+        {
+          label: "Oui",
+          onClick: () => alert("Click Yes")
+        },
+        {
+          label: "Non",
+          onClick: () => alert('Click Non')
+        }
+      ]
+    })*/
     console.log('Suppessiosn', id);
+    //alert("Etes-vous sûr de vouloir supprimer cette maladie ?");
+    console.log("HHHHHH", confirmAlert);
     this.deleteMaladie(id);
   };
 
@@ -113,6 +130,7 @@ class Maladies extends Component {
 
     return (
       <div>
+        <Menu />
         <div className='centerData'>
           <div className='maladieAndSearch d-flex'>
             <div className='newMaladie'>
@@ -120,7 +138,7 @@ class Maladies extends Component {
             </div>
 
             <div className='searchMaladie input-group mt-0'>
-              <input type='search' placeholder='Rechercher par nom' className='form-control h-5' onChange={this.handleSearchMaladie} />
+              <input type='search' placeholder='Rechercher une maladie par son nom' className='form-control h-5' onChange={this.handleSearchMaladie} />
             </div>
           </div>
 
@@ -132,14 +150,14 @@ class Maladies extends Component {
             maladie={this.state.maladie}
             onFormSubmit={this.onFormSubmit}
           />
-          <table className='ui celled table data'>
+          <table className='table table-striped table-bordered data'>
             <thead className="">
               <tr>
-                <th style={{ width: "80px", textAlign: "center" }}>#</th>
-                <th>Nom</th>
-                <th>Type</th>
+                <th style={{ width: "30px", textAlign: "center" }}>#</th>
+                <th style={{ width: "158px" }}>Nom</th>
+                <th style={{ width: "158px" }}>Type</th>
                 <th >Symptômes</th>
-                <th style={{ width: "338px" }}>Actions</th>
+                <th style={{ width: "158px" }}>Actions</th>
               </tr>
             </thead>
             <tbody>

@@ -1,13 +1,13 @@
 .formulaireConnexion {
     border: 1px solid #c2c4c5e5;
     width: 28%;
-    padding: 30px;
+    padding: 50px;
     margin: auto;
     border-radius: 10px;
-    background: rgb(0, 0, 0);
+    background-color: #02022d;
     margin-top: 10vh;
     height: 70vh;
-    color: silver;
+    color: white;
 }
 
 .iconUser {
@@ -25,7 +25,7 @@
 
 .formulaireConnexion h2 {
     text-align: center;
-    margin-top: 34px;
+    margin-top: 17px;
 }
 
 .formulaireConnexion .labelText {

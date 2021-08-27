@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 class ListMaladies extends Component {
 
     onDelete = () => {
@@ -26,14 +25,14 @@ class ListMaladies extends Component {
                     <td>{maladies.type}</td>
                     <td>{maladies.symptomes}</td>
                     <td>
-                        <button className='buttonS btn btn bt3' type='submit' onClick={this.onViewShowDetail} >
-                            <i className="fa fa-info-circle"></i> Détails
+                        <button className='btn btn-primary bt1' type='submit' onClick={this.onViewShowDetail} title="Détails" >
+                            <i className="fa fa-info-circle"></i> 
                         </button>
-                        <button type='submit' className='btn btn bt1' onClick={this.onEdit}>
-                            <i className="fa fa-edit"></i> Modifier
+                        <button type='submit' className='btn btn-success bt2' onClick={this.onEdit} title="Editer">
+                            <i className="fa fa-edit"></i> 
                         </button>
-                        <button className='buttonS btn btn bt2' type='submit' onClick={this.onDelete}>
-                            <i className="fa fa-trash"></i> Supprimer
+                        <button className='btn btn-danger bt3' type='submit' onClick={this.onDelete} title="Supprimer">
+                            <i className="fa fa-trash"></i>
                         </button>
                     </td>
                 </tr>
