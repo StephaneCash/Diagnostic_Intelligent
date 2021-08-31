@@ -5,6 +5,7 @@ import Menu from './Menu';
 //import Select from 'react-select';
 import UpContainer from './UpContainer';
 import DropdownDIagn from './DropdownDIagn';
+import Load from '../dialog/Load'
 
 function Diagnostic(props) {
 
@@ -13,6 +14,7 @@ function Diagnostic(props) {
     const [filterSymptomes, setFilterSymptomes] = useState([]); // Objets trouvés sur base de la méthode "includes" opérée sur les maladies
     const [hide, setHide] = useState(false);
     const [symptomeSelected, setSymptomeSelected] = useState([]); // Données juste symptômes trouvés (split)
+    const [i, setI] = useState(true);
 
     useEffect(() => {
         fetch('http://localhost:8000/api/maladies')
@@ -28,7 +30,7 @@ function Diagnostic(props) {
     const handleSubmitForm = (e) => {
         e.preventDefault();
         if (symptome !== null) {
-            
+
             const filterMaladies = maladies.filter(maladie => maladie.symptomes.includes(symptome)); // Récupérer tous les objets contenant le mot entré
             console.log("OBJET TROUVE", filterMaladies)
 
@@ -37,7 +39,7 @@ function Diagnostic(props) {
                 //console.log("Find", filterMaladies)
                 setHide(true);
                 findSympt(filterMaladies);
-            }else{
+            } else {
                 alert('Erreur !! Valeur non trouvée non introuvable');
             }
         } else {
@@ -57,21 +59,32 @@ function Diagnostic(props) {
         setSymptomeSelected(symptomesSplit);
     }
 
+    setTimeout(() => {
+        setI(false)
+    }, 500)
+
+    const soumission = (e) => {
+        e.preventDefault()
+        alert("sou")
+    }
     return (
         <>
             <UpContainer />
             <Menu />
+
             <div className="diagnostic">
-
                 <h3> <i className="fa fa-medkit"></i>  Diagnostic</h3>
-
-                <form className="form form" onSubmit={handleSubmitForm}>
-                    <label htmlFor="inputSymptome"> <i style={{ color: "red" }} className="fa fa-plus-circle"></i> Entrer un symptôme svp : </label>
-                    <input type="text" className="form-control" id="inputSymptome" name="nom" value={symptome || ""} placeholder="Entrer un symptôme" onChange={handleSearchMaladie}></input>
-                    <button className="btn btn-primary mt-3"><i className="fa fa-check"></i> Valider</button>
-                </form>
                 {
-                    hide ? <form className="form mt-3">
+                    i ? <Load /> :
+
+                        <form className="form form" onSubmit={handleSubmitForm}>
+                            <label htmlFor="inputSymptome"> <i style={{ color: "red" }} className="fa fa-plus-circle"></i> Entrer un symptôme svp : </label>
+                            <input type="text" className="form-control" id="inputSymptome" name="nom" value={symptome || ""} placeholder="Entrer un symptôme" onChange={handleSearchMaladie}></input>
+                            <button className="btn btn-primary mt-3"><i className="fa fa-check"></i> Valider</button>
+                        </form>
+                }
+                {
+                    hide ? <form className="form mt-3 nouveauForm">
                         <label> <i style={{ color: "red" }} className="fa fa-plus-circle"></i> Avez-vous aussi remarqué ces symptômes ?</label>
                         {
                             filterSymptomes.map((symptom, index) => {
@@ -85,10 +98,13 @@ function Diagnostic(props) {
                             dataComplet={filterSymptomes}
                             symptomInput={symptome}
                         />
+                        <button type="submit" className="mt-3 btn btn-danger annuler"><i className="fa fa-close"></i> Annuler</button>
+                        <button type="submit" className="mt-3 btn btn-primary" onClick={soumission}><i className="fa fa-send"></i> Envoyer</button>
                     </form> : ""
                 }
-
             </div>
+
+
         </>
     )
 }

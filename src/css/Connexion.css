@@ -1,12 +1,12 @@
 .formulaireConnexion {
     border: 1px solid #c2c4c5e5;
-    width: 28%;
+    width: 450px;
     padding: 50px;
     margin: auto;
     border-radius: 10px;
-    background-color: #02022d;
+    background-color: #21252b;
     margin-top: 10vh;
-    height: 70vh;
+    height: 72vh;
     color: white;
 }
 
@@ -41,4 +41,13 @@
 .btnConnexion:active{
     border:1px solid white;
     transform: scale(1);
+}
+
+.viewPassword{
+    margin-top: -11%;
+    color : black;
+    float: right;
+    padding: 10px;   
+    font-size:20px !important;
+    cursor: pointer;
 }

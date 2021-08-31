@@ -32,3 +32,13 @@
     width: 50%;
     margin:auto;
 }
+
+.nouveauForm{
+    border: 1px solid silver;
+    height: auto;
+    padding: 20px;
+}
+
+.annuler{
+    margin-right: 12px;
+}

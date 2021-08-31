@@ -1,7 +1,7 @@
 import React from 'react'
 
 function Response(props) {
-    console.log("Données", props.dataComplet)
+    console.log(props.newTab1)
   return (
     <div>
         Salut monsieur vous souffrez de la Thyphoide

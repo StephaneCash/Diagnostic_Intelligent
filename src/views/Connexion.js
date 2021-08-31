@@ -14,9 +14,9 @@ const Connexion = () => {
     const [users, setUsers] = useState([]);
     const [userAPI, setUserAPI] = useState('');
     const [passAPI, setPassAPI] = useState('');
-    
 
-    
+
+
     useEffect(() => {
         fetch('http://localhost:8000/api/users')
             .then((response) => {
@@ -30,7 +30,7 @@ const Connexion = () => {
 
     console.log("USERS", users);
 
-    const readUsers = (users) =>{
+    const readUsers = (users) => {
         users.forEach(element => {
             setUserAPI(element.username)
             setPassAPI(element.password)
@@ -45,7 +45,7 @@ const Connexion = () => {
     //console.log(history)
 
     const handleUsername = (e) => {
-    
+
         setUsername(e.target.value);
     }
 
@@ -57,7 +57,7 @@ const Connexion = () => {
         readUsers(users)
         e.preventDefault();
         //console.log(password, username)
-        if (username === userAPI ) {
+        if (username === userAPI) {
             if (password === passAPI) {
                 //console.log("TRANQUILLE", props);
                 history.push('/Maladies');
@@ -83,16 +83,26 @@ const Connexion = () => {
         }
     }, [password, username, btn])
 
+    let view = true;
+    const changer = () => {
+        if (view) {
+            document.getElementById('password').setAttribute('type', 'text');
+            view = false;
+        } else {
+            document.getElementById('password').setAttribute('type', 'password');
+            view = true;
+        }
+    }
 
     return (
         <div className="formulaireConnexion">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} >
                 <div className="iconeConn"><div className="icon d-flex align-items-center justify-content-center">
                     <i className='iconUser fa fa-user-o mt-1 '></i> </div>
                 </div>
                 <h2 className="">Connexion</h2>
                 <br />
-                { error ?  <h6 style={{ color: "red", backgroundColor: "white", padding: "8px", borderRadius: "4px", fontSize:"15px" }}> {error} </h6> : ""} 
+                {error ? <h6 style={{ color: "red", backgroundColor: "white", padding: "8px", borderRadius: "4px", fontSize: "15px" }}> {error} </h6> : ""}
                 <div className="form-group">
                     <label htmlFor="login" className="form-label" labelText>Username </label>
                     <input
@@ -114,7 +124,7 @@ const Connexion = () => {
                         placeholder="Password"
                         value={password}
                         onChange={handlePassword}
-                    />
+                    /> <i className="fa fa-eye viewPassword" onClick={changer}></i>
                 </div>
 
                 {

@@ -54,11 +54,9 @@ function DropdownDIagn(props) {
                 if (newTab1.includes(finSearch)) {
                     alert("FIN COP");
                 }
-
-                /*setTimeout(() => {
-    
+                setTimeout(() => {
                     history.push('/Response')
-                }, 3000)*/
+                }, 4000)
             }
         }
     }
