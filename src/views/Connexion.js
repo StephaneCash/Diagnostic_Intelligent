@@ -11,12 +11,41 @@ const Connexion = () => {
     const [error, setError] = useState('');
     const [nom, setNom] = useState('');
     const [hide, setHide] = useState(false);
+    const [users, setUsers] = useState([]);
+    const [userAPI, setUserAPI] = useState('');
+    const [passAPI, setPassAPI] = useState('');
+    
+
+    
+    useEffect(() => {
+        fetch('http://localhost:8000/api/users')
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                //console.log(data)
+                setUsers(data);
+            })
+    }, [])
+
+    console.log("USERS", users);
+
+    const readUsers = (users) =>{
+        users.forEach(element => {
+            setUserAPI(element.username)
+            setPassAPI(element.password)
+            console.log('element', element.username)
+            console.log('element', element.password)
+
+        });
+    }
 
     let history = useHistory();
 
-    console.log(history)
+    //console.log(history)
 
     const handleUsername = (e) => {
+    
         setUsername(e.target.value);
     }
 
@@ -25,10 +54,11 @@ const Connexion = () => {
     }
 
     const handleSubmit = (e) => {
+        readUsers(users)
         e.preventDefault();
         //console.log(password, username)
-        if (username === "okende") {
-            if (password === "111111") {
+        if (username === userAPI ) {
+            if (password === passAPI) {
                 //console.log("TRANQUILLE", props);
                 history.push('/Maladies');
                 setNom("okende");
@@ -64,7 +94,7 @@ const Connexion = () => {
                 <br />
                 { error ?  <h6 style={{ color: "red", backgroundColor: "white", padding: "8px", borderRadius: "4px", fontSize:"15px" }}> {error} </h6> : ""} 
                 <div className="form-group">
-                    <label for="login" className="form-label" labelText>Username </label>
+                    <label htmlFor="login" className="form-label" labelText>Username </label>
                     <input
                         type="text"
                         className="form-control"
@@ -76,7 +106,7 @@ const Connexion = () => {
                 </div>
 
                 <div className="form-group mt-3">
-                    <label for="password" className="form-label">Password</label>
+                    <label htmlFor="password" className="form-label">Password</label>
                     <input
                         type="password"
                         className="form-control"
@@ -96,7 +126,8 @@ const Connexion = () => {
                         :
                         <button
                             className="btn btn btnConnexion mt-4 form-control"
-                            style={{ backgroundColor: "silver", border: "1px solid white", color: "black" }} disabled>Se connecter</button>
+                            style={{ backgroundColor: "silver", border: "1px solid white", color: "black" }} disabled>Se connecter
+                        </button>
                 }
 
             </form>

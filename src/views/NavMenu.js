@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import React from 'react'
 import Connexion from "./Connexion";
 import ErrorPage from "./ErrorPage";
+import Response from "./Response";
 
 function NavMenu(props) {
 
@@ -19,10 +20,12 @@ function NavMenu(props) {
                 <Route path="/Users" exact component={Users} />
                 <Route path="/Diagnostic" exact component={Diagnostic} />
                 <Route path="/" exact component={Malades} />
-                <Route exact component={ErrorPage} />
+                <Route path="/Response" exact component={Response} />
+                <Route exact component={ErrorPage} />                
             </Switch>
         </BrowserRouter >
     )
+
 }
 
 export default NavMenu

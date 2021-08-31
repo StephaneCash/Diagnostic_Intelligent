@@ -44,7 +44,7 @@ function Menu() {
                     </NavLink>
                 </li>
                 <li>
-                    <Link to="/"><center><i className=" fa fa-user"></i></center>Déconnexion</Link>
+                    <Link to="/"><center><i className=" fa fa-sign-out"></i></center>Déconnexion</Link>
                 </li>
 
             </ul>

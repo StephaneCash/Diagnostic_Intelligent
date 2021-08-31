@@ -5,6 +5,7 @@ import Loader from "../dialog/Loader";
 import EditAndAjoutDoctor from '../dialog/EditAndAjoutDoctor';
 import DetailDoctor from '../dialog/DetailDoctor';
 import Menu from './Menu';
+import UpContainer from './UpContainer';
 class Doctors extends Component {
 
     state = {
@@ -106,6 +107,7 @@ class Doctors extends Component {
         // console.log("différents doctors", doctors)
         return (
             <div>
+                <UpContainer></UpContainer>
                 <Menu />
                 <div className="centerData">
                     <div className='maladieAndSearch d-flex'>

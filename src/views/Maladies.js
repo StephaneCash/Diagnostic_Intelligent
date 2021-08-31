@@ -8,6 +8,7 @@ import Loader from "../dialog/Loader";
 import DetailMaladie from "../dialog/DetailMaladie";
 import Menu from './Menu';
 import { confirmAlert } from "react-confirm-alert";
+import UpContainer from "./UpContainer";
 
 class Maladies extends Component {
 
@@ -28,6 +29,7 @@ class Maladies extends Component {
     this.setState({ Loader: true })
     const maladies = await axios.get(this.state.url);
     this.setState({ maladies: maladies.data, Loader: false });
+    console.log("Maladies", maladies)
   };
 
   componentDidMount() {
@@ -130,6 +132,8 @@ class Maladies extends Component {
 
     return (
       <div>
+        
+        <UpContainer />
         <Menu />
         <div className='centerData'>
           <div className='maladieAndSearch d-flex'>
@@ -144,7 +148,7 @@ class Maladies extends Component {
 
           <h1>Maladies et leurs symptômes ({valLong})</h1>
           {
-            this.state.Loader ? <Loader /> : ""
+            this.state.Loader ? <Loader />  : ""
           }
           <EditMaladie
             maladie={this.state.maladie}
