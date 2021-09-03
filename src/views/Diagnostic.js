@@ -67,6 +67,11 @@ function Diagnostic(props) {
         e.preventDefault()
         alert("sou")
     }
+
+    const changeValue = (value) => {
+        setFilterSymptomes(value)
+    }
+
     return (
         <>
             <UpContainer />
@@ -87,8 +92,8 @@ function Diagnostic(props) {
                     hide ? <form className="form mt-3 nouveauForm">
                         <label> <i style={{ color: "red" }} className="fa fa-plus-circle"></i> Avez-vous aussi remarqué ces symptômes ?</label>
                         {
-                            filterSymptomes.map((symptom, index) => {
-                                return <div key={index}>{symptom.symptomes} <br /></div>
+                            filterSymptomes.map((element, index) => {
+                                return <div ke={index}>{element.symptomes} <div></div></div>
                             })
                         }
                         <br />
@@ -97,6 +102,7 @@ function Diagnostic(props) {
                             data={symptomeSelected}
                             dataComplet={filterSymptomes}
                             symptomInput={symptome}
+                            changeValue={changeValue.bind(this)}
                         />
                         <button type="submit" className="mt-3 btn btn-danger annuler"><i className="fa fa-close"></i> Annuler</button>
                         <button type="submit" className="mt-3 btn btn-primary" onClick={soumission}><i className="fa fa-send"></i> Envoyer</button>

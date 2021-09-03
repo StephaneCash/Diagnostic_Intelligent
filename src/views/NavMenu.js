@@ -8,6 +8,7 @@ import React from 'react'
 import Connexion from "./Connexion";
 import ErrorPage from "./ErrorPage";
 import Response from "./Response";
+import maladieFind from "./maladieFind";
 
 function NavMenu(props) {
 
@@ -15,6 +16,7 @@ function NavMenu(props) {
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact component={Connexion} />
+                <Route path="/maladieFind" exact component={maladieFind} />
                 <Route path="/Maladies" exact component={Maladies} />
                 <Route path="/Doctors" exact component={Doctors} />
                 <Route path="/Users" exact component={Users} />
