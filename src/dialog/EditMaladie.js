@@ -9,6 +9,7 @@ class EditMaladie extends Component {
             type: "",
             symptomes: "",
             description: "",
+            prevention: "",
             isEdit: false
         },
         btnName: "Ajouter une maladie",
@@ -70,6 +71,11 @@ class EditMaladie extends Component {
             return false;
         }
 
+        if (document.getElementsByName("prevention")[0].value === "") {
+            alert('Veuillez entrer quelques preventions');
+            return false;
+        }
+
         return true;
     }
 
@@ -80,6 +86,7 @@ class EditMaladie extends Component {
                 type: "",
                 symptomes: "",
                 description: "",
+                prevention: "",
                 isEdit: false
             }
         });
@@ -146,6 +153,20 @@ class EditMaladie extends Component {
                         value={this.state.form.description}
                     />
                 </div>
+
+                <div className="four wide field">
+                    <label>Prevention  :</label><br></br>
+                    <input
+                        type="text"
+                        name="prevention"
+                        id="prevention"
+                        className="form-control"
+                        placeholder="Prevention"
+                        onChange={this.handleChange}
+                        value={this.state.form.prevention}
+                    />
+                </div>
+                
                 <div className="four wide field">
                     <button
                         type="submit"

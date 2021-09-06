@@ -106,3 +106,26 @@ thead tr th{
     font-family: sans-serif;
 }
 
+.maladieTrouvee{
+    border: 1px solid silver;
+    margin-top: 20px;
+    padding: 20px;
+    height: 250px;
+    border-radius: 5px;
+}
+
+.linkFin a{
+    color: white !important;
+    border-radius: 5px;
+    position: relative;
+}
+
+.linkFin{
+    margin-top: 30px;
+    background-color: blue !important;
+    padding: 5px;
+    width:100px;
+    border-radius: 5px;
+    text-align: center;
+}
+

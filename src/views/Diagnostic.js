@@ -22,7 +22,6 @@ function Diagnostic(props) {
                 return response.json();
             })
             .then((data) => {
-                //console.log(data)
                 setMaladies(data);
             })
     }, [])
@@ -31,7 +30,7 @@ function Diagnostic(props) {
         e.preventDefault();
         if (symptome !== null) {
 
-            const filterMaladies = maladies.filter(maladie => maladie.symptomes.includes(symptome)); // Récupérer tous les objets contenant le mot entré
+            const filterMaladies = maladies.filter(maladie => maladie.symptomes.toUpperCase().includes(symptome)); // Récupérer tous les objets contenant le mot entré
             console.log("OBJET TROUVE", filterMaladies)
 
             if (filterMaladies) {
@@ -49,7 +48,8 @@ function Diagnostic(props) {
     }
 
     const handleSearchMaladie = (e) => {
-        setSymptome(e.target.value);
+        let valueToLower = e.target.value;
+        setSymptome(valueToLower.toUpperCase());
         //console.log(e.target.value)
     }
 
@@ -105,7 +105,6 @@ function Diagnostic(props) {
                             changeValue={changeValue.bind(this)}
                         />
                         <button type="submit" className="mt-3 btn btn-danger annuler"><i className="fa fa-close"></i> Annuler</button>
-                        <button type="submit" className="mt-3 btn btn-primary" onClick={soumission}><i className="fa fa-send"></i> Envoyer</button>
                     </form> : ""
                 }
             </div>

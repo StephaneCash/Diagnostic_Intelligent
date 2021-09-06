@@ -7,15 +7,11 @@ function DropdownDIagn(props) {
 
     const [symptomeSelected, setSymptomeSelected] = useState(""); // Stocke la valeur selectionnée dans la liste déroulante
     const [dataFind, setDataFind] = useState([]);  // Stocke le nouveau tableau trouvé en comparant la valeur selectionnée au grand tableau (dataComplet)
-  
+    const [finSearch, setFinSearch] = useState([props.symptomInput]);
 
     let data = props.data; // Récupération de data split pour les afficher dans la liste déroulante
 
     let history = useHistory();
-
-
-    // let finSearch = [props.symptomInput];
-    const [finSearch, setFinSearch] = useState([props.symptomInput]);
 
     let dataComplet = props.dataComplet; // DataComplet trouvé sur base de l'input saisi par le user
 
@@ -23,7 +19,6 @@ function DropdownDIagn(props) {
 
     const handleSelectSymptome = (e) => {
         setSymptomeSelected(e.target.value); // Récupération de la valeur selectionée
-        //console.log(symptomeSelected)
         if (symptomeSelected !== undefined) {
             const filterSic = dataComplet.filter(sympt => sympt.symptomes.includes(symptomeSelected));
             let valueProps = props.changeValue;
@@ -32,17 +27,17 @@ function DropdownDIagn(props) {
             console.log("Symptome selectionne", e.target.value)
 
             if (symptomeSelected !== e.target.value) {
-                //finSearch.push(e.target.value);
                 setFinSearch([...finSearch, symptomeSelected])
                 console.log("Tableau d'éléments pushés", finSearch)
                 if (finSearch.length > 4 && dataComplet) {
-                    let verif = dataComplet.includes(finSearch)
                     if (dataComplet.length >= 1) {
-                        //history.push('/maladieFind')
                         console.log("Maladie trouvée est : ", dataComplet)
                         console.log("Maladie trouvée est : ", dataComplet.length)
                         findMaladie()
                     }
+                }else if(finSearch.length === 8 && dataComplet === ""){
+                    alert("Aucune maladie ne correspond à vos symptômes entrés");
+                    history.push("/Diagnostic")
                 }
             }
         }
@@ -59,10 +54,6 @@ function DropdownDIagn(props) {
                     newTab1 = data[0].concat(data2);
                     return newTab1;
                 }
-                else {
-                    newTab1 = data[0].concat(data[1]);
-                    return newTab1;
-                }
             } else {
                 alert("Non la valeur est indéfinie");
                 return false;
@@ -71,13 +62,10 @@ function DropdownDIagn(props) {
     }
 
     const findMaladie = () => {
-        <maladieFind 
-            dataComplet={dataComplet}
-        />
-        history.push("/maladieFind")
+        history.push({ pathname: '/maladieFind/', donnees: { data: dataComplet } })
     }
 
-    const maladie = () =>{
+    const maladie = () => {
         <maladieFind
             dataComplet={dataComplet}
         />
@@ -95,7 +83,7 @@ function DropdownDIagn(props) {
             </select>
 
             {
-                dataComplet.length > 1 ? maladie()  : ""
+                dataComplet.length > 1 ? maladie() : ""
             }
         </div>
     )

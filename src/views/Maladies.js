@@ -50,7 +50,8 @@ class Maladies extends Component {
       nom: data.nom,
       type: data.type,
       symptomes: data.symptomes,
-      description: data.description
+      description: data.description,
+      prevention: data.prevention
     });
 
     this.getMaladies();
@@ -63,7 +64,8 @@ class Maladies extends Component {
       nom: data.nom,
       type: data.type,
       symptomes: data.symptomes,
-      description: data.description
+      description: data.description,
+      prevention: data.prevention
     });
 
     this.getMaladies();
@@ -123,12 +125,8 @@ class Maladies extends Component {
 
   render() {
     let maladies = this.state.maladies;
-    //console.log("List de maladies", maladies)
 
     let valLong = maladies.length;
-    //console.log('Taille', valLong);
-
-    //console.log(this.props)
 
     return (
       <div>
