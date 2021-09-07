@@ -12,7 +12,6 @@ function maladieFind(props) {
         console.log(error);
     }
 
-    //let data2 = props.location.donnees.data[1].nom;
     console.log("DATA", data)
 
     return (
