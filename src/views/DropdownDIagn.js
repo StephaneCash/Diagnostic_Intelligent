@@ -25,7 +25,7 @@ function DropdownDIagn(props) {
             let valueProps = props.changeValue;
             valueProps(dataFind);
             setDataFind(filterSic);
-            //console.log("Symptome selectionne", e.target.value)
+            console.log("Symptome selectionne", e.target.value)
 
             if (symptomeSelected !== e.target.value) {
                 setFinSearch([...finSearch, e.target.value])
