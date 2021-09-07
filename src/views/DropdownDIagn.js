@@ -17,7 +17,6 @@ function DropdownDIagn(props) {
     console.log("DATACOMPLET", dataComplet)
 
     var newTab1 = []; //tableau qui stocke les symptômes trouvés en les fusionnant
-    var newTab2 = [];
 
     const handleSelectSymptome = (e) => {
         setSymptomeSelected(e.target.value); // Récupération de la valeur selectionée
