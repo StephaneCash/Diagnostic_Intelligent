@@ -32,7 +32,6 @@ function DropdownDIagn(props) {
                 if (finSearch.length > 4 && dataComplet) {
                     if (dataComplet.length >= 1) {
                         //console.log("Maladie trouvée est : ", dataComplet)
-                        // console.log("Maladie trouvée est : ", dataComplet.length)
                         findMaladie()
                     }
                 } else if (finSearch.length === 8 && dataComplet === "") {
