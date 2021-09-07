@@ -63,11 +63,6 @@ function Diagnostic(props) {
         setI(false)
     }, 500)
 
-    const soumission = (e) => {
-        e.preventDefault()
-        alert("sou")
-    }
-
     const changeValue = (value) => {
         setFilterSymptomes(value)
     }

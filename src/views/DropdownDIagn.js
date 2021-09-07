@@ -14,8 +14,10 @@ function DropdownDIagn(props) {
     let history = useHistory();
 
     let dataComplet = props.dataComplet; // DataComplet trouvé sur base de l'input saisi par le user
+    console.log("DATACOMPLET", dataComplet)
 
     var newTab1 = []; //tableau qui stocke les symptômes trouvés en les fusionnant
+    var newTab2 = [];
 
     const handleSelectSymptome = (e) => {
         setSymptomeSelected(e.target.value); // Récupération de la valeur selectionée
@@ -24,18 +26,18 @@ function DropdownDIagn(props) {
             let valueProps = props.changeValue;
             valueProps(dataFind);
             setDataFind(filterSic);
-            console.log("Symptome selectionne", e.target.value)
+            //console.log("Symptome selectionne", e.target.value)
 
             if (symptomeSelected !== e.target.value) {
-                setFinSearch([...finSearch, symptomeSelected])
-                console.log("Tableau d'éléments pushés", finSearch)
+                setFinSearch([...finSearch, e.target.value])
+                //console.log("Tableau d'éléments pushés", finSearch)
                 if (finSearch.length > 4 && dataComplet) {
                     if (dataComplet.length >= 1) {
-                        console.log("Maladie trouvée est : ", dataComplet)
-                        console.log("Maladie trouvée est : ", dataComplet.length)
+                        //console.log("Maladie trouvée est : ", dataComplet)
+                        // console.log("Maladie trouvée est : ", dataComplet.length)
                         findMaladie()
                     }
-                }else if(finSearch.length === 8 && dataComplet === ""){
+                } else if (finSearch.length === 8 && dataComplet === "") {
                     alert("Aucune maladie ne correspond à vos symptômes entrés");
                     history.push("/Diagnostic")
                 }
@@ -44,14 +46,28 @@ function DropdownDIagn(props) {
     }
 
     const newTabS = (data) => {
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i <= 6; i++) {
             if (data) {
-                if (data[i]) {
-                    newTab1 = data[0].concat(data[1], data[3], data[4])
+                if (data[0], data[1], data[2], data[3], data[4], data[5], data[6]) {
+                    newTab1 = data[0].concat(data[1], data[3], data[4], data[5], data[6])
                     return newTab1;
-                } else if (data[3]) {
-                    let data2 = data[1].concat(data[2], data[3])
-                    newTab1 = data[0].concat(data2);
+                } else if (data[0], data[1], data[2], data[3], data[4], data[5]) {
+                    newTab1 = data[0].concat(data[1], data[2], data[3], data[4], data[5]);
+                    return newTab1;
+                } else if (data[0], data[1], data[2], data[3], data[4]) {
+                    newTab1 = data[0].concat(data[1], data[2], data[3], data[4]);
+                    return newTab1;
+                } else if (data[0], data[1], data[2], data[3]) {
+                    newTab1 = data[0].concat(data[1], data[2], data[3]);
+                    return newTab1;
+                } else if (data[0], data[1], data[2]) {
+                    newTab1 = data[0].concat(data[1], data[2]);
+                    return newTab1;
+                } else if (data[0], data[1]) {
+                    newTab1 = data[0].concat(data[1]);
+                    return newTab1;
+                } else if (data[0]) {
+                    newTab1 = data[0]
                     return newTab1;
                 }
             } else {
@@ -65,13 +81,8 @@ function DropdownDIagn(props) {
         history.push({ pathname: '/maladieFind/', donnees: { data: dataComplet } })
     }
 
-    const maladie = () => {
-        <maladieFind
-            dataComplet={dataComplet}
-        />
-    }
-
     console.log("Nouveau tableau fusionné", newTabS(data))
+
     return (
         <div>
             <select value={symptomeSelected} onChange={handleSelectSymptome} className="form-control">
@@ -81,10 +92,6 @@ function DropdownDIagn(props) {
                     })
                 }
             </select>
-
-            {
-                dataComplet.length > 1 ? maladie() : ""
-            }
         </div>
     )
 }
