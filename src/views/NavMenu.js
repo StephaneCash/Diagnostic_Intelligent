@@ -27,7 +27,6 @@ function NavMenu(props) {
             </Switch>
         </BrowserRouter >
     )
-
 }
 
 export default NavMenu
