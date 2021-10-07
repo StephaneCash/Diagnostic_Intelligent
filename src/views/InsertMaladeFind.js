@@ -9,8 +9,8 @@ function InsertMaladeFind(props) {
 
     var data = props.data;
 
-    var nom = "kikoni";
-    var postnom = "stephane";
+    var nom = "Okende";
+    var postnom = "jeremie";
     var maladie = "";
     var prevention = "";
 
@@ -23,7 +23,7 @@ function InsertMaladeFind(props) {
             console.log("Echec d'enregistrement du malade");
         }
     }
-    
+
     if(data){
         maladie = data.maladie;
         prevention = data.prevention;
