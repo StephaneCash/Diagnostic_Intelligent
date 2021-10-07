@@ -15,7 +15,11 @@ const Connexion = () => {
     const [userAPI, setUserAPI] = useState('');
     const [passAPI, setPassAPI] = useState('');
 
+    const [userSession, setUserSession] = useState(null);
 
+    const mal = () => {
+
+    }
 
     useEffect(() => {
         fetch('http://localhost:8000/api/users')
@@ -42,8 +46,6 @@ const Connexion = () => {
 
     let history = useHistory();
 
-    //console.log(history)
-
     const handleUsername = (e) => {
 
         setUsername(e.target.value);
@@ -56,10 +58,8 @@ const Connexion = () => {
     const handleSubmit = (e) => {
         readUsers(users)
         e.preventDefault();
-        //console.log(password, username)
         if (username === userAPI) {
             if (password === passAPI) {
-                //console.log("TRANQUILLE", props);
                 history.push('/Maladies');
                 setNom("okende");
                 setHide(true);

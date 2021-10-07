@@ -24,17 +24,27 @@ function Histoty() {
 
     console.log("Différents malades", data);
 
+    /*for (let i = 0; i < data.length; i++) {
+        console.log("DATA : ", data[i]);
+        if(data[i].nom === data[i].nom){
+            console.log("DOUBLON", data[i])
+        }
+    }*/
+
     return (
         <div className="">
             <UpContainer></UpContainer>
             <Menu />
             <div className="centerData">
-                {
-                     etat ? <Load /> : ""
-                }
+                <p className="userActifs"><i className="fa fa-"></i> Liste de malades diagnostiqués </p>
 
                 {
-                    data ? <>
+                    etat ? <Load /> : ""
+                }
+
+
+                {
+                    data.length > 0 ? <>
                         <table className="table table-hover table-bordered mt-3">
                             <thead>
                                 <tr>
@@ -61,7 +71,7 @@ function Histoty() {
                                 })
                             }
                         </table>
-                    </> : "" 
+                    </> : "Aucun malade diagnostiqué"
                 }
             </div>
 
