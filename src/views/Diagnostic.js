@@ -31,6 +31,10 @@ function Diagnostic(props) {
             const filterMaladies = maladies.filter(maladie => maladie.symptomes.toUpperCase().includes(symptome)); // Récupérer tous les objets contenant le mot entré
             console.log("OBJET TROUVE", filterMaladies)
 
+            if(filterMaladies === null){
+                alert("MAUVAIS")
+            }
+
             if (filterMaladies) {
                 setFilterSymptomes(filterMaladies);
                 setHide(true);
@@ -81,11 +85,13 @@ function Diagnostic(props) {
                 {
                     hide ? <form className="form mt-3 nouveauForm">
                         <label> <i style={{ color: "red" }} className="fa fa-plus-circle"></i> Avez-vous aussi remarqué ces symptômes ?</label>
-                        {
-                            filterSymptomes.map((element, index) => {
-                                return <div ke={index}>{element.symptomes} <div></div></div>
-                            })
-                        }
+                        <div style={{ overflow: 'scroll', height: 'auto' }}>
+                            {
+                                filterSymptomes.map((element, index) => {
+                                    return <div ke={index}>{element.symptomes} <div></div></div>
+                                })
+                            }
+                        </div>
                         <br />
                         <h5>Choisir parmi ces symptômes</h5>
                         <DropdownDIagn

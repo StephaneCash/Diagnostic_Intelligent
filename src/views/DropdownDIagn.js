@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
 
 function DropdownDIagn(props) {
@@ -73,6 +73,7 @@ function DropdownDIagn(props) {
             }
         }
     }
+    var etatV = true;
 
     const findMaladie = () => {
         history.push({ pathname: '/maladieFind/', donnees: { data: dataComplet } })

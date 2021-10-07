@@ -21,12 +21,21 @@ function Histoty() {
 
     console.log("Différents malades", data);
 
+    const fetchMalades = () => {
+        data.forEach(element => {
+            console.log(element.nom)
+        });
+    }
+
     return (
         <div className="">
             <UpContainer></UpContainer>
             <Menu />
             <div className="centerData">
-                history
+                historyjj
+                {
+                    fetchMalades()
+                }
             </div>
         </div>
     )
