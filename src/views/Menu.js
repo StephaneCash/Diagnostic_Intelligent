@@ -3,7 +3,7 @@ import '../css/Menu.css';
 import { NavLink, Link} from 'react-router-dom';
 
 function Menu() {
-    return (
+    return ( 
         <div className="menu">
             <ul>
                 <li><i id="partT" className="IconHome fa fa-stethoscope"></i> HOSPITAL </li>
@@ -36,11 +36,11 @@ function Menu() {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/configuration">
+                    <NavLink to="/history">
                         <center>
-                            <i className="IconHome fa fa-gear"></i>
+                            <i className="IconHome fa fa-history"></i>
                         </center>
-                        Configuration
+                        Historique
                     </NavLink>
                 </li>
                 <li>

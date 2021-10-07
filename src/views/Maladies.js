@@ -140,7 +140,7 @@ class Maladies extends Component {
             </div>
 
             <div className='searchMaladie input-group mt-0'>
-              <input type='search' placeholder='Rechercher une maladie par son nom' className='form-control h-5' onChange={this.handleSearchMaladie} />
+              <input type='search' placeholder='Rechercher une maladie ' className='form-control h-5' onChange={this.handleSearchMaladie} />
             </div>
           </div>
 
@@ -165,7 +165,8 @@ class Maladies extends Component {
             <tbody>
               {maladies.filter((maladie) => {
                 return (
-                  maladie.nom.toLowerCase().includes(this.state.lower)
+                  maladie.nom.toLowerCase().includes(this.state.lower) || maladie.symptomes.toLowerCase().includes(this.state.lower) 
+                  || maladie.type.toLowerCase().includes(this.state.lower)
                 );
               }).map(maladie => {
                 return (

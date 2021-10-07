@@ -45,22 +45,22 @@ function DropdownDIagn(props) {
     const newTabS = (data) => {
         for (let i = 0; i <= 6; i++) {
             if (data) {
-                if (data[0], data[1], data[2], data[3], data[4], data[5], data[6]) {
+                if (data[0] && data[1] && data[2] && data[3] && data[4] && data[5] && data[6]) {
                     newTab1 = data[0].concat(data[1], data[3], data[4], data[5], data[6])
                     return newTab1;
-                } else if (data[0], data[1], data[2], data[3], data[4], data[5]) {
+                } else if (data[0] && data[1] && data[2] && data[3] && data[4] && data[5]) {
                     newTab1 = data[0].concat(data[1], data[2], data[3], data[4], data[5]);
                     return newTab1;
-                } else if (data[0], data[1], data[2], data[3], data[4]) {
+                } else if (data[0] && data[1] && data[2] && data[3] && data[4]) {
                     newTab1 = data[0].concat(data[1], data[2], data[3], data[4]);
                     return newTab1;
-                } else if (data[0], data[1], data[2], data[3]) {
+                } else if (data[0] && data[1] && data[2] && data[3]) {
                     newTab1 = data[0].concat(data[1], data[2], data[3]);
                     return newTab1;
-                } else if (data[0], data[1], data[2]) {
+                } else if (data[0] && data[1] && data[2]) {
                     newTab1 = data[0].concat(data[1], data[2]);
                     return newTab1;
-                } else if (data[0], data[1]) {
+                } else if (data[0] && data[1]) {
                     newTab1 = data[0].concat(data[1]);
                     return newTab1;
                 } else if (data[0]) {

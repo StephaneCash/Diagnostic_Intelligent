@@ -2,7 +2,6 @@ import React from 'react'
 import "../css/Diagnostic.css";
 import { useEffect, useState } from 'react'
 import Menu from './Menu';
-//import Select from 'react-select';
 import UpContainer from './UpContainer';
 import DropdownDIagn from './DropdownDIagn';
 import Load from '../dialog/Load'
@@ -29,13 +28,11 @@ function Diagnostic(props) {
     const handleSubmitForm = (e) => {
         e.preventDefault();
         if (symptome !== null) {
-
             const filterMaladies = maladies.filter(maladie => maladie.symptomes.toUpperCase().includes(symptome)); // Récupérer tous les objets contenant le mot entré
             console.log("OBJET TROUVE", filterMaladies)
 
             if (filterMaladies) {
                 setFilterSymptomes(filterMaladies);
-                //console.log("Find", filterMaladies)
                 setHide(true);
                 findSympt(filterMaladies);
             } else {
@@ -50,12 +47,10 @@ function Diagnostic(props) {
     const handleSearchMaladie = (e) => {
         let valueToLower = e.target.value;
         setSymptome(valueToLower.toUpperCase());
-        //console.log(e.target.value)
     }
 
     const findSympt = (filterSymptomes) => {
         const symptomesSplit = filterSymptomes.map((sympt) => sympt.symptomes.split(","));
-        //console.log("Symptomes find", symptomesSplit)
         setSymptomeSelected(symptomesSplit);
     }
 
@@ -103,8 +98,6 @@ function Diagnostic(props) {
                     </form> : ""
                 }
             </div>
-
-
         </>
     )
 }

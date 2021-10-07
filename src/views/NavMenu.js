@@ -9,6 +9,7 @@ import Connexion from "./Connexion";
 import ErrorPage from "./ErrorPage";
 import Response from "./Response";
 import maladieFind from "./maladieFind";
+import History from "./Histoty";
 
 function NavMenu(props) {
 
@@ -23,6 +24,7 @@ function NavMenu(props) {
                 <Route path="/Diagnostic" exact component={Diagnostic} />
                 <Route path="/" exact component={Malades} />
                 <Route path="/Response" exact component={Response} />
+                <Route path="/history" exact component={History} />
                 <Route exact component={ErrorPage} />                
             </Switch>
         </BrowserRouter >

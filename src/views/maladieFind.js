@@ -1,8 +1,16 @@
-import React from 'react'
+import React, {useState}  from 'react'
 import { Link } from 'react-router-dom';
+import maladies from '../data/maladies';
+import loaderDialog from '../dialog/Load';
 
 function maladieFind(props) {
     console.log("Maladie FIND", props);
+
+    const [nom, setNom] = useState("");
+    const [postnom, setPostnom] = useState("");
+    const [maladie, setMaladie] = useState('');
+    const [prevention, setPrevention] = useState("");
+    const [loading, setLoading] = useState(false);
 
     var data;
 
