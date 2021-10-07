@@ -45,7 +45,7 @@ function Histoty() {
 
                 {
                     data.length > 0 ? <>
-                        <table className="table table-hover table-bordered mt-3">
+                        <table className="table table-hover table-bordered mt-3" style={{fontFamily:'Segoe UI'}}>
                             <thead>
                                 <tr>
                                     <th>Nom du malade</th>
@@ -53,6 +53,7 @@ function Histoty() {
                                     <th>Maladie Trouvée après diagnostic</th>
                                     <th>Préventions</th>
                                     <th>Date</th>
+                                    <th>Imprimer</th>
                                 </tr>
                             </thead>
                             {
@@ -65,6 +66,8 @@ function Histoty() {
                                                 <td>{element.maladie}</td>
                                                 <td>{element.prevention}</td>
                                                 <td>{element.created_at}</td>
+                                                <td>
+                                                    <i  class="fa fa-print"> <span style={{fontFamily:'Arial'}}> imprimer</span></i></td>
                                             </tr>
                                         </tbody>
                                     </>
