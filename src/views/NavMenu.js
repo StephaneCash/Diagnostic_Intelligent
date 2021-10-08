@@ -11,6 +11,7 @@ import Response from "./Response";
 import maladieFind from "./maladieFind";
 import History from "./Histoty";
 import UpContainer from "./UpContainer";
+import Configuration from "./Configuration";
 
 function NavMenu(props) {
 
@@ -26,8 +27,9 @@ function NavMenu(props) {
                 <Route path="/" exact component={Malades} />
                 <Route path="/Response" exact component={Response} />
                 <Route path="/history" exact component={History} />
-                <Route exact component={ErrorPage} />           
-                <Route exact component={UpContainer} />     
+                <Route exact component={ErrorPage} />
+                <Route path="/up" exact component={UpContainer} />
+                <Route path="/config" exact component={Configuration} />
             </Switch>
         </BrowserRouter >
     )
