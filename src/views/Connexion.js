@@ -15,12 +15,6 @@ const Connexion = () => {
     const [userAPI, setUserAPI] = useState('');
     const [passAPI, setPassAPI] = useState('');
 
-    const [userSession, setUserSession] = useState(null);
-
-    const mal = () => {
-        
-    }
-
     useEffect(() => {
         fetch('http://localhost:8000/api/users')
             .then((response) => {

@@ -1,12 +1,12 @@
 import React from 'react'
 import '../css/Menu.css';
-import { NavLink, Link} from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 
 function Menu() {
     return ( 
         <div className="menu">
             <ul>
-                <li><i id="partT" className="IconHome fa fa-stethoscope"></i> HOSPITAL </li>
+                <li><i id="partT" className="IconHomeH fa fa-plus"></i> HOSPITAL </li>
 
                 <li>
                     <NavLink to="/Maladies">
@@ -43,10 +43,6 @@ function Menu() {
                         Historique
                     </NavLink>
                 </li>
-                <li>
-                    <Link to="/"><center><i className=" fa fa-sign-out"></i></center>Déconnexion</Link>
-                </li>
-
             </ul>
         </div>
     )

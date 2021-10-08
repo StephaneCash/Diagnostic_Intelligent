@@ -10,6 +10,7 @@ import ErrorPage from "./ErrorPage";
 import Response from "./Response";
 import maladieFind from "./maladieFind";
 import History from "./Histoty";
+import UpContainer from "./UpContainer";
 
 function NavMenu(props) {
 
@@ -25,7 +26,8 @@ function NavMenu(props) {
                 <Route path="/" exact component={Malades} />
                 <Route path="/Response" exact component={Response} />
                 <Route path="/history" exact component={History} />
-                <Route exact component={ErrorPage} />                
+                <Route exact component={ErrorPage} />           
+                <Route exact component={UpContainer} />     
             </Switch>
         </BrowserRouter >
     )

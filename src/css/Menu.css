@@ -5,7 +5,9 @@ ul {
   width: 8%;
   padding: 0;
   height: 100vh;
-  color: white
+  color: white;
+  margin-top: 50px;
+  position: fixed;
 }
 
 li {
@@ -39,7 +41,7 @@ a:hover {
 }
 
 .IconHome {
-  font-size: 30px;
+  font-size: 20px;
   color: silver;
 }
 

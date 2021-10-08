@@ -72,24 +72,13 @@ class Maladies extends Component {
   }
 
   onDelete = (id) => {
-    /*confirmAlert({
-      title: "ConfirmToSubmit",
-      message: "Etes-vous sûr de vouloir supprimer cette filière ?",
-      buttons: [
-        {
-          label: "Oui",
-          onClick: () => alert("Click Yes")
-        },
-        {
-          label: "Non",
-          onClick: () => alert('Click Non')
-        }
-      ]
-    })*/
-    console.log('Suppessiosn', id);
-    //alert("Etes-vous sûr de vouloir supprimer cette maladie ?");
-    console.log("HHHHHH", confirmAlert);
-    this.deleteMaladie(id);
+
+    if (window.confirm("Etes-vous sûr de vouloir de supprimer ?")) {
+      console.log('Suppessiosn', id);
+      //alert("Etes-vous sûr de vouloir supprimer cette maladie ?");
+      console.log("HHHHHH", confirmAlert);
+      this.deleteMaladie(id);
+    }
   };
 
   onEdit = (data) => {
@@ -130,7 +119,7 @@ class Maladies extends Component {
 
     return (
       <div>
-        
+
         <UpContainer />
         <Menu />
         <div className='centerData'>
@@ -146,7 +135,7 @@ class Maladies extends Component {
 
           <h1>Maladies et leurs symptômes ({valLong})</h1>
           {
-            this.state.Loader ? <Loader />  : ""
+            this.state.Loader ? <Loader /> : ""
           }
           <EditMaladie
             maladie={this.state.maladie}
@@ -165,7 +154,7 @@ class Maladies extends Component {
             <tbody>
               {maladies.filter((maladie) => {
                 return (
-                  maladie.nom.toLowerCase().includes(this.state.lower) || maladie.symptomes.toLowerCase().includes(this.state.lower) 
+                  maladie.nom.toLowerCase().includes(this.state.lower) || maladie.symptomes.toLowerCase().includes(this.state.lower)
                   || maladie.type.toLowerCase().includes(this.state.lower)
                 );
               }).map(maladie => {
