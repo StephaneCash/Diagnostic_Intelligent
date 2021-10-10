@@ -27,7 +27,6 @@ function NavMenu(props) {
                 <Route path="/" exact component={Malades} />
                 <Route path="/Response" exact component={Response} />
                 <Route path="/history" exact component={History} />
-                <Route exact component={ErrorPage} />
                 <Route path="/up" exact component={UpContainer} />
                 <Route path="/config" exact component={Configuration} />
             </Switch>

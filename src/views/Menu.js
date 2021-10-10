@@ -43,6 +43,14 @@ function Menu() {
                         Historique
                     </NavLink>
                 </li>
+                <li>
+                    <NavLink to="/config">
+                        <center>
+                            <i className="IconHome fa fa-gear fa-spin"></i>
+                        </center>
+                        Configuration
+                    </NavLink>
+                </li>
             </ul>
         </div>
     )
